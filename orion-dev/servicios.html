@@ -263,136 +263,126 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-
 <script>
 
-/* ============================= */
-/* EMAILJS CONFIG */
-/* ============================= */
+emailjs.init("KZEtvLVpShmdGR40B");
 
-(function(){
-  emailjs.init({
-    publicKey: "KZEtvLVpShmdGR40B"
-  });
-})();
-
-
-/* ============================= */
-/* MODAL */
-/* ============================= */
+/* =========================
+   MODAL CONTROL
+========================= */
 
 function openModal(service){
-  const modal = document.getElementById("modal");
-  if(!modal) return;
-
-  modal.style.display="flex";
-
-  const serviceInput = document.getElementById("serviceInput");
-  if(serviceInput) serviceInput.value = service || "";
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("serviceInput").value = service;
 }
 
 function closeModal(){
-  const modal = document.getElementById("modal");
-  if(modal) modal.style.display="none";
+    document.getElementById("modal").style.display = "none";
 }
 
-window.onclick = function(event){
-  const modal = document.getElementById("modal");
-  if(modal && event.target === modal){
-    modal.style.display="none";
-  }
-};
+
+/* =========================
+   NOTIFICACION MODERNA
+========================= */
+
+function showNotification(msg, success=true){
+
+    const div = document.createElement("div");
+
+    div.innerText = msg;
+
+    div.style.position = "fixed";
+    div.style.bottom = "25px";
+    div.style.right = "25px";
+    div.style.padding = "15px 22px";
+    div.style.borderRadius = "10px";
+    div.style.color = "white";
+    div.style.fontFamily = "Poppins, sans-serif";
+    div.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
+    div.style.zIndex = "9999";
+
+    div.style.background = success 
+        ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
+        : "linear-gradient(45deg,#ef4444,#b91c1c)";
+
+    document.body.appendChild(div);
+
+    setTimeout(()=>{
+        div.remove();
+    },3000);
+
+}
 
 
-/* ============================= */
-/* FAQ ACCORDION */
-/* ============================= */
+/* =========================
+   VALIDAR EMAIL
+========================= */
 
-document.querySelectorAll(".faq-question").forEach(question=>{
-  question.addEventListener("click",()=>{
-    question.parentElement.classList.toggle("active");
-  });
-});
+function validarEmail(email){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 
-/* ============================= */
-/* CONTACT FORM */
-/* ============================= */
+/* =========================
+   FORMULARIO PRINCIPAL
+========================= */
 
 const contactForm = document.getElementById("contact-form");
 
 if(contactForm){
 
-  contactForm.addEventListener("submit", function(e){
+contactForm.addEventListener("submit", async function(e){
+
     e.preventDefault();
 
     const btn = this.querySelector("button");
-    if(!btn) return;
+
+    const nombre = this.user_name.value.trim();
+    const email = this.user_email.value.trim();
+    const empresa = this.empresa.value.trim();
+    const message = this.message.value.trim();
+
+    if(!nombre || !email || !message){
+        showNotification("Completa los campos obligatorios ❌", false);
+        return;
+    }
+
+    if(!validarEmail(email)){
+        showNotification("Email inválido ❌", false);
+        return;
+    }
 
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
-    emailjs.sendForm(
-      "service_h9vwk5r",
-      "template_1nfni24",
-      this
-    )
-    .then(()=>{
-      alert("Solicitud enviada 🚀");
-      this.reset();
-      closeModal();
-    })
-    .catch(err=>{
-      console.error(err);
-      alert("Error al enviar ❌");
-    })
-    .finally(()=>{
-      btn.disabled = false;
-      btn.innerText = "Enviar";
-    });
+    try{
 
-  });
+        await emailjs.send(
+            "service_h9vwk5r",
+            "template_1nfni24",
+            {
+                user_name:nombre,
+                user_email:email,
+                empresa:empresa,
+                message:message
+            }
+        );
 
-}
+        showNotification("Solicitud enviada 🚀");
+        this.reset();
+        closeModal();
 
+    }catch(err){
 
-/* ============================= */
-/* CV FORM */
-/* ============================= */
+        console.error(err);
+        showNotification("Error al enviar ❌", false);
 
-const cvForm = document.getElementById("cvForm");
+    }
 
-if(cvForm){
+    btn.disabled = false;
+    btn.innerText = "Enviar Solicitud";
 
-  cvForm.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const btn = this.querySelector("button");
-    if(!btn) return;
-
-    btn.disabled = true;
-    btn.innerText = "Enviando...";
-
-    emailjs.sendForm(
-      "service_h9vwk5r",
-      "template_1nfni24",
-      this
-    )
-    .then(()=>{
-      alert("Postulación enviada correctamente 🚀");
-      this.reset();
-      closeModal();
-    })
-    .catch(err=>{
-      console.error(err);
-      alert("Error al enviar ❌");
-    })
-    .finally(()=>{
-      btn.disabled = false;
-      btn.innerText = "Enviar Postulación";
-    });
-
-  });
+});
 
 }
 
