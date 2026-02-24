@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orion Dev | Soluciones Digitales</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="background"></div>
+<div id="particles-js"></div>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="img/logo.png" alt="Logo">
+  </div>
+  <div class="nav-links">
+    <a href="#">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Construimos Experiencias Digitales de Alto Impacto</h1>
+  <p>
+    Desarrollo web, aplicaciones escalables y diseño premium
+    para empresas que buscan posicionarse al máximo nivel.
+  </p>
+  <a href="servicios.html" class="btn-primary">Comenzar Proyecto</a>
+</section>
+
+<section class="stats">
+  <div><h2>+120</h2><p>Proyectos Completados</p></div>
+  <div><h2>+80</h2><p>Clientes Activos</p></div>
+  <div><h2>99%</h2><p>Satisfacción</p></div>
+</section>
+
+<section id="proyectos" class="projects">
+  <h2>Proyectos Destacados</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <h3>Plataforma SaaS</h3>
+      <p>Sistema completo con autenticación y dashboard admin.</p>
+    </div>
+    <div class="project-card">
+      <h3>E-commerce Premium</h3>
+      <p>Tienda online con gestión de stock y pagos integrados.</p>
+    </div>
+    <div class="project-card">
+      <h3>App Corporativa</h3>
+      <p>Aplicación web empresarial optimizada y escalable.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <h2>Nuestro Equipo</h2>
+  <div class="team-grid">
+    
+    <div class="member">
+      <img src="img/luca.jpg" alt="Luca Brondi" class="avatar">
+      <h4>CEO & Founder</h4>
+      <p>Luca Brondi</p>
+
+      <div class="member-social">
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="member">
+      <img src="img/enrique.jpg" alt="Enrique" class="avatar">
+      <h4>CEO & Founder</h4>
+      <p>Enrique</p>
+
+      <div class="member-social">
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="careers">
+  <h2>Trabajá con Nosotros</h2>
+  <p class="section-subtitle">
+    En Orion Dev buscamos personas apasionadas por la tecnología,
+    la innovación y el crecimiento profesional.
+  </p>
+
+  <div class="careers-grid">
+
+    <div class="career-card">
+      <i class="fas fa-chart-line"></i>
+      <h3>Crecimiento Profesional</h3>
+      <p>Capacitaciones constantes, desafíos reales y posibilidad de escalar dentro del equipo.</p>
+    </div>
+
+    <div class="career-card">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Proyectos de Alto Nivel</h3>
+      <p>Trabajá en desarrollos modernos, SaaS, e-commerce y soluciones empresariales reales.</p>
+    </div>
+
+    <div class="career-card">
+      <i class="fas fa-users"></i>
+      <h3>Ambiente Colaborativo</h3>
+      <p>Equipo dinámico, creativo y enfocado en resultados con comunicación directa.</p>
+    </div>
+
+    <div class="career-card">
+      <i class="fas fa-globe"></i>
+      <h3>Trabajo Flexible</h3>
+      <p>Modalidad remota o híbrida, horarios flexibles y enfoque en productividad.</p>
+    </div>
+
+  </div>
+  
+  <button class="btn-primary careers-btn" onclick="openModal()">
+    Enviar CV
+  </button>
+</section>
+
+
+<section id="contacto" class="cta">
+  <h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
+  <a href="servicios.html" class="btn-primary">Solicitar Presupuesto</a>
+</section>
+
+<footer class="footer">
+  <h3>ORION DEV</h3>
+  <p>Innovación • Tecnología • Profesionalismo</p>
+</footer>
+
+
+<!-- Modal CV -->
+<div id="cvModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Postulación Orion Dev</h2>
+
+    <form id="cvForm">
+      <input type="text" name="nombre" placeholder="Nombre Completo" required>
+      <input type="email" name="email" placeholder="Correo Electrónico" required>
+      <input type="text" name="puesto" placeholder="Puesto al que aplicás" required>
+      
+      <textarea name="mensaje" placeholder="Contanos sobre vos..." required></textarea>
+
+      <label class="file-label">
+        Adjuntar CV (PDF o DOC)
+        <input type="file" name="archivo" accept=".pdf,.doc,.docx" required>
+      </label>
+
+      <button type="submit" class="btn-primary">Enviar Postulación</button>
+    </form>
+  </div>
+</div>
+
+
+
+<script src="js/particles.js"></script>
+<script>
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    color:{value:"#00a2ff"},
+    line_linked:{enable:true,color:"#00a2ff",opacity:0.15},
+    move:{speed:1}
+  }
+});
+
+function openModal(){
+  document.getElementById("cvModal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("cvModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById("cvModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init({
+    publicKey: "KZEtvLVpShmdGR40B",
+  });
+})();
+
+document.getElementById("cvForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const btn = this.querySelector("button");
+  btn.innerText = "Enviando...";
+  btn.disabled = true;
+
+  emailjs.sendForm(
+    "service_h9vwk5r",
+    "template_1nfni24",
+    this
+  )
+  .then(() => {
+    alert("Postulación enviada correctamente 🚀");
+    this.reset();
+    if (typeof closeModal === "function") {
+      closeModal();
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    alert("Error al enviar ❌");
+  })
+  .finally(() => {
+    btn.innerText = "Enviar Postulación";
+    btn.disabled = false;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+@import url("index.css");
+
+.services-hero {
+  padding-top: 180px;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.services-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
+}
+
+.service-card {
+  background: rgba(15,25,55,0.7);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(0,162,255,0.2);
+  width: 300px;
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0,162,255,0.4);
+}
+
+.btn-contratar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #00a2ff;
+  background: transparent;
+  color: #00a2ff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-contratar:hover {
+  background: #00a2ff;
+  color: white;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #0f1c3d;
+  padding: 40px;
+  border-radius: 20px;
+  width: 400px;
+  border: 1px solid rgba(0,162,255,0.3);
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #081022;
+  color: white;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.services-hero{
+padding-top:200px;text-align:center;
+max-width:800px;margin:auto;padding-bottom:100px;
+}
+
+.process{text-align:center;padding:100px 20px;}
+.process-grid{
+display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+}
+.process-grid div{
+width:220px;background:rgba(15,25,55,.7);
+padding:30px;border-radius:15px;
+border:1px solid rgba(0,162,255,.2);
+}
+
+.pricing{text-align:center;padding:100px 20px;}
+.pricing-grid{
+display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+}
+.plan{
+background:rgba(15,25,55,.7);
+padding:40px;border-radius:20px;
+width:300px;border:1px solid rgba(0,162,255,.2);
+transition:.3s;
+}
+.plan:hover{transform:translateY(-10px);}
+
+.featured{
+border:2px solid #00a2ff;
+box-shadow:0 0 30px rgba(0,162,255,.4);
+}
+
+/* ===========================
+   FAQ PREMIUM
+=========================== */
+
+.faq {
+  padding: 140px 20px;
+  text-align: center;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 80px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.faq-item {
+  background: rgba(15, 25, 55, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 162, 255, 0.15);
+  padding: 25px 30px;
+  transition: 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 0 30px rgba(0, 162, 255, 0.25);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.faq-icon {
+  font-size: 22px;
+  transition: 0.3s ease;
+  color: #00a2ff;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
+  opacity: 0.7;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.modal{
+display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(8px);
+justify-content:center;align-items:center;
+}
+
+.modal-content{
+background:#0f1c3d;padding:40px;border-radius:20px;
+width:400px;border:1px solid rgba(0,162,255,.3);
+}
+
+.modal-content input,
+.modal-content textarea{
+width:100%;margin-bottom:15px;
+padding:12px;border-radius:8px;
+border:none;background:#081022;color:white;
+}
+
+.close{float:right;cursor:pointer;}
+
+
+/* ===========================
+   SECCIÓN PLANES PROFESIONAL
+=========================== */
+
+.pricing {
+  text-align: center;
+  padding: 140px 20px;
+  position: relative;
+}
+
+.section-title {
+  font-size: 40px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg,#00a2ff,#4cc9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-sub {
+  opacity: .6;
+  margin-bottom: 80px;
+  font-size: 16px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE PLANES */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARD BASE */
+.plan {
+  position: relative;
+  width: 340px;
+  padding: 50px 40px;
+  border-radius: 25px;
+  background: rgba(15,25,55,.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0,162,255,.15);
+  transition: .4s ease;
+}
+
+.plan:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 0 40px rgba(0,162,255,.3);
+}
+
+/* DESTACADO */
+.featured {
+  border: 2px solid #00a2ff;
+  box-shadow: 0 0 60px rgba(0,162,255,.35);
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: linear-gradient(90deg,#007bff,#00a2ff);
+  padding: 6px 15px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* HEADER */
+.plan-header h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #00a2ff;
+}
+
+.price-sub {
+  font-size: 13px;
+  opacity: .6;
+}
+
+/* FEATURES */
+.plan-features {
+  list-style: none;
+  margin: 35px 0;
+  text-align: left;
+}
+
+.plan-features li {
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 25px;
+  opacity: .85;
+}
+
+.plan-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #00a2ff;
+  font-weight: bold;
+}
+
+/* BOTÓN */
+.btn-plan {
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(90deg,#007bff,#00a2ff);
+  color: white;
+  transition: .3s;
+}
+
+.btn-plan:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,162,255,.6);
+}
