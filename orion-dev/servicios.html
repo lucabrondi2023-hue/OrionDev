@@ -265,7 +265,12 @@
 
 <script>
 
+/* =========================
+   INIT EMAILJS
+========================= */
+
 emailjs.init("KZEtvLVpShmdGR40B");
+
 
 /* =========================
    MODAL CONTROL
@@ -291,31 +296,31 @@ function showNotification(msg, success=true){
 
     div.innerText = msg;
 
-    div.style.position = "fixed";
-    div.style.bottom = "25px";
-    div.style.right = "25px";
-    div.style.padding = "15px 22px";
-    div.style.borderRadius = "10px";
-    div.style.color = "white";
-    div.style.fontFamily = "Poppins, sans-serif";
-    div.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
-    div.style.zIndex = "9999";
-
-    div.style.background = success 
-        ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
-        : "linear-gradient(45deg,#ef4444,#b91c1c)";
+    Object.assign(div.style,{
+        position:"fixed",
+        bottom:"25px",
+        right:"25px",
+        padding:"15px 22px",
+        borderRadius:"10px",
+        color:"white",
+        fontFamily:"Poppins, sans-serif",
+        boxShadow:"0 10px 30px rgba(0,0,0,0.15)",
+        zIndex:"9999",
+        background: success 
+            ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
+            : "linear-gradient(45deg,#ef4444,#b91c1c)"
+    });
 
     document.body.appendChild(div);
 
     setTimeout(()=>{
         div.remove();
-    },3000);
-
+    },3500);
 }
 
 
 /* =========================
-   VALIDAR EMAIL
+   VALIDACIONES
 ========================= */
 
 function validarEmail(email){
@@ -335,13 +340,15 @@ contactForm.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    const btn = this.querySelector("button");
+    const btn = this.querySelector("button[type='submit']");
 
     const nombre = this.user_name.value.trim();
     const email = this.user_email.value.trim();
     const empresa = this.empresa.value.trim();
     const message = this.message.value.trim();
+    const service = document.getElementById("serviceInput").value;
 
+    /* Validaciones */
     if(!nombre || !email || !message){
         showNotification("Completa los campos obligatorios ❌", false);
         return;
@@ -352,29 +359,40 @@ contactForm.addEventListener("submit", async function(e){
         return;
     }
 
+    /* Bloquear doble envío */
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
     try{
 
+        console.log("Enviando EmailJS:",{
+            service,
+            nombre,
+            email,
+            empresa,
+            message
+        });
+
         await emailjs.send(
             "service_h9vwk5r",
             "template_1nfni24",
             {
+                service:service,
                 user_name:nombre,
                 user_email:email,
-                empresa:empresa,
+                empresa:empresa || "No especificado",
                 message:message
             }
         );
 
         showNotification("Solicitud enviada 🚀");
+
         this.reset();
         closeModal();
 
     }catch(err){
 
-        console.error(err);
+        console.error("EmailJS Error:",err);
         showNotification("Error al enviar ❌", false);
 
     }
