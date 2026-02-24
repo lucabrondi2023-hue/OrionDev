@@ -166,69 +166,102 @@
 
 
 <script src="js/particles.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 <script>
+
+/* ============================= */
+/* PARTICLES */
+/* ============================= */
+
 particlesJS("particles-js",{
   particles:{
     number:{value:60},
     color:{value:"#00a2ff"},
-    line_linked:{enable:true,color:"#00a2ff",opacity:0.15},
+    line_linked:{
+      enable:true,
+      color:"#00a2ff",
+      opacity:0.15
+    },
     move:{speed:1}
   }
 });
 
+
+/* ============================= */
+/* MODAL */
+/* ============================= */
+
 function openModal(){
-  document.getElementById("cvModal").style.display = "flex";
+  const modal = document.getElementById("cvModal");
+  if(modal) modal.style.display = "flex";
 }
 
 function closeModal(){
-  document.getElementById("cvModal").style.display = "none";
+  const modal = document.getElementById("cvModal");
+  if(modal) modal.style.display = "none";
 }
 
-window.onclick = function(event) {
+window.onclick = function(event){
   const modal = document.getElementById("cvModal");
-  if (event.target == modal) {
+  if(modal && event.target === modal){
     modal.style.display = "none";
   }
-}
-</script>
+};
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script>
+/* ============================= */
+/* EMAILJS */
+/* ============================= */
+
 (function(){
-  emailjs.init({
-    publicKey: "KZEtvLVpShmdGR40B",
-  });
+  emailjs.init("KZEtvLVpShmdGR40B");
 })();
 
-document.getElementById("cvForm").addEventListener("submit", function(e){
-  e.preventDefault();
 
-  const btn = this.querySelector("button");
-  btn.innerText = "Enviando...";
-  btn.disabled = true;
+/* ============================= */
+/* CV FORM */
+/* ============================= */
 
-  emailjs.sendForm(
-    "service_h9vwk5r",
-    "template_1nfni24",
-    this
-  )
-  .then(() => {
-    alert("Postulación enviada correctamente 🚀");
-    this.reset();
-    if (typeof closeModal === "function") {
+window.addEventListener("DOMContentLoaded", () => {
+
+  const cvForm = document.getElementById("cvForm");
+
+  if(!cvForm) return;
+
+  cvForm.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const btn = this.querySelector("button");
+    if(!btn) return;
+
+    btn.disabled = true;
+    btn.innerText = "Enviando...";
+
+    emailjs.sendForm(
+      "service_h9vwk5r",
+      "template_1nfni24",
+      this
+    )
+    .then(()=>{
+      alert("Postulación enviada correctamente 🚀");
+      this.reset();
       closeModal();
-    }
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-    alert("Error al enviar ❌");
-  })
-  .finally(() => {
-    btn.innerText = "Enviar Postulación";
-    btn.disabled = false;
+    })
+    .catch(err=>{
+      console.error("EmailJS Error:", err);
+      alert("Error al enviar ❌");
+    })
+    .finally(()=>{
+      btn.disabled = false;
+      btn.innerText = "Enviar Postulación";
+    });
+
   });
+
 });
+
 </script>
 </body>
 </html>
