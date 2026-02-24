@@ -69,7 +69,6 @@
       <p>Luca Brondi</p>
 
       <div class="member-social">
-        <a href="#"><i class="fab fa-discord"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
@@ -80,7 +79,6 @@
       <p>Enrique</p>
 
       <div class="member-social">
-        <a href="#"><i class="fab fa-discord"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
@@ -100,27 +98,34 @@
     <div class="career-card">
       <i class="fas fa-chart-line"></i>
       <h3>Crecimiento Profesional</h3>
-      <p>Capacitaciones constantes, desafíos reales y posibilidad de escalar dentro del equipo.</p>
+      <p>Capacitaciones constantes y posibilidad real de escalar dentro del equipo.</p>
     </div>
 
     <div class="career-card">
       <i class="fas fa-laptop-code"></i>
       <h3>Proyectos de Alto Nivel</h3>
-      <p>Trabajá en desarrollos modernos, SaaS, e-commerce y soluciones empresariales reales.</p>
+      <p>Desarrollos SaaS, e-commerce y soluciones empresariales reales.</p>
     </div>
 
     <div class="career-card">
       <i class="fas fa-users"></i>
       <h3>Ambiente Colaborativo</h3>
-      <p>Equipo dinámico, creativo y enfocado en resultados con comunicación directa.</p>
+      <p>Equipo dinámico enfocado en resultados y crecimiento conjunto.</p>
     </div>
 
     <div class="career-card">
       <i class="fas fa-globe"></i>
       <h3>Trabajo Flexible</h3>
-      <p>Modalidad remota o híbrida, horarios flexibles y enfoque en productividad.</p>
+      <p>Modalidad remota o híbrida con horarios flexibles.</p>
     </div>
 
+  </div>
+
+  <!-- BOTON -->
+  <div class="careers-cta">
+    <button class="btn-cv" onclick="openCVModal()">
+      <i class="fas fa-paper-plane"></i> Sumate al Equipo
+    </button>
   </div>
 
 </section>
@@ -137,21 +142,25 @@
 </footer>
 
 
-<!-- Modal CV -->
+<!-- MODAL CV -->
 <div id="cvModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content cv-modal">
+
+    <span class="close" onclick="closeCVModal()">&times;</span>
+
     <h2>Postulación Orion Dev</h2>
-
-    <form id="cvForm">
-      <input type="text" name="nombre" placeholder="Nombre Completo" required>
-      <input type="email" name="email" placeholder="Correo Electrónico" required>
+    <p class="modal-sub">Completá el formulario y nos pondremos en contacto.</p>
+    
+    <form id="contact-form">
+    
+      <input type="text" name="user_name" placeholder="Nombre completo" required>
+      <input type="email" name="user_email" placeholder="Email" required>
       <input type="text" name="puesto" placeholder="Puesto al que aplicás" required>
-      
-      <textarea name="mensaje" placeholder="Contanos sobre vos..." required></textarea>
-
-      <button type="submit" class="btn-primary">Enviar Postulación</button>
+      <textarea name="message" placeholder="Contanos sobre tu experiencia o puesto al que aplicás..." required></textarea>
+    
+      <button type="submit" class="btn-primary">Enviar Solicitud</button>
     </form>
+
   </div>
 </div>
 
@@ -160,74 +169,125 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function(){
 
-/* EMAILJS INIT */
+/* =========================
+   INIT EMAILJS
+========================= */
 emailjs.init("KZEtvLVpShmdGR40B");
 
 
-/* MODAL */
-
-function openModal(){
-document.getElementById("cvModal")?.style.display="flex";
+/* =========================
+   MODAL CV CONTROL
+========================= */
+window.openCVModal = function(){
+    document.getElementById("cvModal").style.display = "flex";
 }
 
-function closeModal(){
-document.getElementById("cvModal")?.style.display="none";
-}
-
-window.onclick=function(e){
-const modal=document.getElementById("cvModal");
-if(modal && e.target===modal){
-modal.style.display="none";
-}
+window.closeCVModal = function(){
+    document.getElementById("cvModal").style.display = "none";
 }
 
 
-/* FORM CONTACTO / CV */
+/* =========================
+   NOTIFICACION
+========================= */
+function showNotification(msg, success = true){
 
-document.addEventListener("DOMContentLoaded", ()=>{
+    const div = document.createElement("div");
+    div.innerText = msg;
 
-const cvForm=document.getElementById("cvForm");
-if(!cvForm) return;
+    Object.assign(div.style,{
+        position:"fixed",
+        bottom:"25px",
+        right:"25px",
+        padding:"15px 22px",
+        borderRadius:"10px",
+        color:"white",
+        fontFamily:"Poppins, sans-serif",
+        boxShadow:"0 10px 30px rgba(0,0,0,0.15)",
+        zIndex:"9999",
+        background: success 
+            ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
+            : "linear-gradient(45deg,#ef4444,#b91c1c)"
+    });
 
-cvForm.addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-const btn=this.querySelector("button");
-
-btn.disabled=true;
-btn.innerText="Enviando...";
-
-try{
-
-await emailjs.send(
-"service_h9vwk5r",
-"template_1nfni24",
-{
-nombre:this.nombre.value,
-email:this.email.value,
-puesto:this.puesto.value,
-mensaje:this.mensaje.value
-}
-);
-
-alert("Postulación enviada 🚀");
-this.reset();
-closeModal();
-
-}catch(err){
-console.error(err);
-alert("Error al enviar ❌");
+    document.body.appendChild(div);
+    setTimeout(()=> div.remove(), 3500);
 }
 
-btn.disabled=false;
-btn.innerText="Enviar Postulación";
+
+/* =========================
+   VALIDAR EMAIL
+========================= */
+function validarEmail(email){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+
+/* =========================
+   FORMULARIO CV
+========================= */
+const contactForm = document.getElementById("contact-form");
+
+if(contactForm){
+
+contactForm.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const btn = this.querySelector("button[type='submit']");
+
+    const nombre = this.user_name.value.trim();
+    const email = this.user_email.value.trim();
+    const puesto = this.puesto.value.trim();
+    const message = this.message.value.trim();
+
+    if(!nombre || !email || !message){
+        showNotification("Completa los campos obligatorios ❌", false);
+        return;
+    }
+
+    if(!validarEmail(email)){
+        showNotification("Email inválido ❌", false);
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Enviando...";
+
+    try{
+      
+      await emailjs.send(
+        "service_h9vwk5r",
+        "template_1nfni24",
+        {
+          nombre: nombre,
+          email: email,
+          puesto: puesto,
+          mensaje: message
+        }
+      );
+
+        showNotification("Postulación enviada 🚀");
+        this.reset();
+        closeCVModal();
+
+    }catch(error){
+
+        console.error("Error EmailJS:", error);
+        showNotification("Error al enviar ❌", false);
+
+    }
+
+    btn.disabled = false;
+    btn.innerText = "Enviar Solicitud";
 
 });
 
-});
+}
 
+});
 </script>
 </body>
 </html>
