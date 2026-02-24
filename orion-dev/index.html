@@ -122,10 +122,7 @@
     </div>
 
   </div>
-  
-  <button class="btn-primary careers-btn" onclick="openModal()">
-    Enviar CV
-  </button>
+
 </section>
 
 
@@ -171,20 +168,22 @@ emailjs.init("KZEtvLVpShmdGR40B");
 /* MODAL */
 
 function openModal(){
-document.getElementById("cvModal").style.display="flex";
+document.getElementById("cvModal")?.style.display="flex";
 }
 
 function closeModal(){
-document.getElementById("cvModal").style.display="none";
+document.getElementById("cvModal")?.style.display="none";
 }
 
 window.onclick=function(e){
 const modal=document.getElementById("cvModal");
-if(modal && e.target===modal) modal.style.display="none";
+if(modal && e.target===modal){
+modal.style.display="none";
+}
 }
 
 
-/* FORM CV */
+/* FORM CONTACTO / CV */
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
@@ -200,20 +199,6 @@ const btn=this.querySelector("button");
 btn.disabled=true;
 btn.innerText="Enviando...";
 
-
-if(!file){
-alert("Debes subir un CV");
-btn.disabled=false;
-btn.innerText="Enviar Postulación";
-return;
-}
-
-const reader=new FileReader();
-
-reader.readAsDataURL(file);
-
-reader.onload=async()=>{
-
 try{
 
 await emailjs.send(
@@ -223,7 +208,7 @@ await emailjs.send(
 nombre:this.nombre.value,
 email:this.email.value,
 puesto:this.puesto.value,
-mensaje:this.mensaje.value,
+mensaje:this.mensaje.value
 }
 );
 
@@ -238,8 +223,6 @@ alert("Error al enviar ❌");
 
 btn.disabled=false;
 btn.innerText="Enviar Postulación";
-
-};
 
 });
 
