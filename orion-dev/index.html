@@ -153,11 +153,6 @@
       
       <textarea name="mensaje" placeholder="Contanos sobre vos..." required></textarea>
 
-      <label class="file-label">
-        Adjuntar CV (PDF o DOC)
-        <input type="file" name="archivo" accept=".pdf,.doc,.docx" required>
-      </label>
-
       <button type="submit" class="btn-primary">Enviar Postulación</button>
     </form>
   </div>
@@ -205,8 +200,6 @@ const btn=this.querySelector("button");
 btn.disabled=true;
 btn.innerText="Enviando...";
 
-/* Archivo CV */
-const file=document.querySelector("input[name='archivo']").files[0];
 
 if(!file){
 alert("Debes subir un CV");
@@ -231,7 +224,6 @@ nombre:this.nombre.value,
 email:this.email.value,
 puesto:this.puesto.value,
 mensaje:this.mensaje.value,
-archivo:reader.result
 }
 );
 
