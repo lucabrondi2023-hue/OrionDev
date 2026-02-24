@@ -165,100 +165,91 @@
 
 
 
-<script src="js/particles.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <script>
 
-/* ============================= */
-/* PARTICLES */
-/* ============================= */
-
-particlesJS("particles-js",{
-  particles:{
-    number:{value:60},
-    color:{value:"#00a2ff"},
-    line_linked:{
-      enable:true,
-      color:"#00a2ff",
-      opacity:0.15
-    },
-    move:{speed:1}
-  }
-});
+/* EMAILJS INIT */
+emailjs.init("KZEtvLVpShmdGR40B");
 
 
-/* ============================= */
 /* MODAL */
-/* ============================= */
 
 function openModal(){
-  const modal = document.getElementById("cvModal");
-  if(modal) modal.style.display = "flex";
+document.getElementById("cvModal").style.display="flex";
 }
 
 function closeModal(){
-  const modal = document.getElementById("cvModal");
-  if(modal) modal.style.display = "none";
+document.getElementById("cvModal").style.display="none";
 }
 
-window.onclick = function(event){
-  const modal = document.getElementById("cvModal");
-  if(modal && event.target === modal){
-    modal.style.display = "none";
-  }
+window.onclick=function(e){
+const modal=document.getElementById("cvModal");
+if(modal && e.target===modal) modal.style.display="none";
+}
+
+
+/* FORM CV */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+const cvForm=document.getElementById("cvForm");
+if(!cvForm) return;
+
+cvForm.addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const btn=this.querySelector("button");
+
+btn.disabled=true;
+btn.innerText="Enviando...";
+
+/* Archivo CV */
+const file=document.querySelector("input[name='archivo']").files[0];
+
+if(!file){
+alert("Debes subir un CV");
+btn.disabled=false;
+btn.innerText="Enviar Postulación";
+return;
+}
+
+const reader=new FileReader();
+
+reader.readAsDataURL(file);
+
+reader.onload=async()=>{
+
+try{
+
+await emailjs.send(
+"service_h9vwk5r",
+"template_1nfni24",
+{
+nombre:this.nombre.value,
+email:this.email.value,
+puesto:this.puesto.value,
+mensaje:this.mensaje.value,
+archivo:reader.result
+}
+);
+
+alert("Postulación enviada 🚀");
+this.reset();
+closeModal();
+
+}catch(err){
+console.error(err);
+alert("Error al enviar ❌");
+}
+
+btn.disabled=false;
+btn.innerText="Enviar Postulación";
+
 };
 
-
-/* ============================= */
-/* EMAILJS */
-/* ============================= */
-
-(function(){
-  emailjs.init("KZEtvLVpShmdGR40B");
-})();
-
-
-/* ============================= */
-/* CV FORM */
-/* ============================= */
-
-window.addEventListener("DOMContentLoaded", () => {
-
-  const cvForm = document.getElementById("cvForm");
-
-  if(!cvForm) return;
-
-  cvForm.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const btn = this.querySelector("button");
-    if(!btn) return;
-
-    btn.disabled = true;
-    btn.innerText = "Enviando...";
-
-    emailjs.sendForm(
-      "service_h9vwk5r",
-      "template_1nfni24",
-      this
-    )
-    .then(()=>{
-      alert("Postulación enviada correctamente 🚀");
-      this.reset();
-      closeModal();
-    })
-    .catch(err=>{
-      console.error("EmailJS Error:", err);
-      alert("Error al enviar ❌");
-    })
-    .finally(()=>{
-      btn.disabled = false;
-      btn.innerText = "Enviar Postulación";
-    });
-
-  });
+});
 
 });
 
