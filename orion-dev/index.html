@@ -69,7 +69,7 @@
       <p>Luca Brondi</p>
 
       <div class="member-social">
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.instagram.com/luca_brondi/"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
 
@@ -79,7 +79,7 @@
       <p>Enrique</p>
 
       <div class="member-social">
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.instagram.com/enrii000/"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     
@@ -190,30 +190,100 @@ window.closeCVModal = function(){
 
 
 /* =========================
-   NOTIFICACION
+   NOTIFICACION ULTRA PREMIUM - TRABAJO
 ========================= */
+
 function showNotification(msg, success = true){
 
-    const div = document.createElement("div");
-    div.innerText = msg;
+    // Bloquear scroll
+    document.body.style.overflow = "hidden";
 
-    Object.assign(div.style,{
+    const overlay = document.createElement("div");
+    Object.assign(overlay.style,{
         position:"fixed",
-        bottom:"25px",
-        right:"25px",
-        padding:"15px 22px",
-        borderRadius:"10px",
-        color:"white",
-        fontFamily:"Poppins, sans-serif",
-        boxShadow:"0 10px 30px rgba(0,0,0,0.15)",
+        top:"0",
+        left:"0",
+        width:"100%",
+        height:"100%",
+        background:"rgba(0,0,0,0.75)",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
         zIndex:"9999",
-        background: success 
-            ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
-            : "linear-gradient(45deg,#ef4444,#b91c1c)"
+        backdropFilter:"blur(8px)"
     });
 
-    document.body.appendChild(div);
-    setTimeout(()=> div.remove(), 3500);
+    const box = document.createElement("div");
+
+    box.innerHTML = `
+        <div style="
+            width:70px;
+            height:70px;
+            margin:0 auto 20px auto;
+            border-radius:50%;
+            background:${success 
+                ? "linear-gradient(135deg,#22c55e,#16a34a)" 
+                : "linear-gradient(135deg,#ef4444,#b91c1c)"};
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:32px;
+            box-shadow:0 0 25px ${success ? "#22c55e" : "#ef4444"};
+        ">
+            ${success ? "✓" : "✕"}
+        </div>
+
+        <h2 style="margin-bottom:15px; font-weight:600;">
+            ${success ? "Postulación enviada" : "Ocurrió un error"}
+        </h2>
+
+        <p style="font-size:15px; line-height:1.6; opacity:0.85;">
+            ${success 
+            ? "Gracias por postularte a Orion Dev. Revisaremos tu perfil y si encaja con el puesto nos estaremos comunicando al email que dejaste."
+            : msg}
+        </p>
+
+        <button id="closeNotice" style="
+            margin-top:30px;
+            padding:12px 28px;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+            background:#111;
+            color:white;
+            font-weight:600;
+            letter-spacing:0.5px;
+            transition:0.3s;
+        ">
+            Cerrar
+        </button>
+    `;
+
+    Object.assign(box.style,{
+        background:"rgba(20,20,20,0.9)",
+        color:"white",
+        padding:"50px",
+        borderRadius:"22px",
+        textAlign:"center",
+        width:"90%",
+        maxWidth:"480px",
+        fontFamily:"Poppins, sans-serif",
+        boxShadow:"0 40px 80px rgba(0,0,0,0.6)",
+        border:"1px solid rgba(255,255,255,0.08)"
+    });
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    const btn = document.getElementById("closeNotice");
+
+    btn.onmouseenter = () => btn.style.background = "#16a34a";
+    btn.onmouseleave = () => btn.style.background = "#111";
+
+    btn.onclick = () => {
+        overlay.remove();
+        document.body.style.overflow = "auto";
+    };
 }
 
 
@@ -291,4 +361,3 @@ contactForm.addEventListener("submit", async function(e){
 </script>
 </body>
 </html>
-
