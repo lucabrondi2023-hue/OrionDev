@@ -115,7 +115,7 @@ body{
 .btn-primary{
   padding:15px 40px;
   border-radius:30px;
-  background:linear-gradient(90deg,#007bff,#00a2ff);
+  background:linear-gradient(90deg,#000000,#00a2ff);
   color:white;
   text-decoration:none;
   font-weight:600;
@@ -447,7 +447,7 @@ body{
 }
 
 .btn-cv{
-  background:linear-gradient(45deg,#0ea5e9,#2563eb);
+  background:linear-gradient(45deg,#000000,#2563eb);
   border:none;
   padding:18px 40px;
   border-radius:60px;
