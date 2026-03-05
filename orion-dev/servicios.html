@@ -64,71 +64,63 @@
 
   <div class="pricing-grid">
 
-
-
-
-
-
     <div class="plan">
       <div class="plan-header">
         <h3>WEB</h3>
-        <div class="price">30$</div>
+        <div class="price">30$ / $45.000</div>
         <span class="price-sub">Pago único</span>
-      </div>
 
-      <ul class="plan-features">
-        <li>Sitio Web Descargable</li>
-        <li>Diseño Responsive</li>
-        <li>Optimización Básica</li>
-        <li>Soporte 15 días</li>
-      </ul>
+        <ul class="plan-features">
+          <li>Mantenimiento Incluido</li>
+          <li>Soporte 24/7</li>
+          <li>Actualizaciones Continuas</li>
+          <li>Manejo de Email</li>
+          <li>Integraciones API</li>
+       </ul>
+               
+      </div>
 
       <button onclick="openModal('Plan Web')" class="btn-plan">
         Contratar
       </button>
     </div>
 
-
-
     <div class="plan featured">
       <div class="badge">Más Popular</div>
 
       <div class="plan-header">
         <h3>WEB PROFESIONAL / DESCARGABLE</h3>
-        <div class="price">150$</div>
+        <div class="price">150$ / $225.000</div>
         <span class="price-sub">Pago único</span>
-      </div>
 
-      <ul class="plan-features">
-        <li>Sitio Web Completo</li>
-        <li>Panel Administrativo</li>
-        <li>Base de Datos</li>
-        <li>Optimización Avanzada</li>
-        <li>Soporte 30 días</li>
-      </ul>
+        <ul class="plan-features">
+          <li>Mantenimiento Incluido</li>
+          <li>Soporte 24/7</li>
+          <li>Actualizaciones Continuas</li>
+          <li>Manejo de Email</li>
+          <li>Integraciones API</li>
+       </ul>
+      </div>
 
       <button onclick="openModal('Plan Web Profesional / Descargable')" class="btn-plan">
         Contratar
       </button>
     </div>
 
-    
-
-
     <div class="plan">
       <div class="plan-header">
         <h3>APP</h3>
-        <div class="price">200$</div>
+        <div class="price">200$ / $300.000</div>
         <span class="price-sub">Pago único</span>
-      </div>
 
-      <ul class="plan-features">
-        <li>Arquitectura SaaS</li>
-        <li>Autenticación Segura</li>
-        <li>Infraestructura Escalable</li>
-        <li>Integraciones API</li>
-        <li>Soporte Prioritario</li>
-      </ul>
+        <ul class="plan-features">
+          <li>Mantenimiento Incluido</li>
+          <li>Soporte 24/7</li>
+          <li>Actualizaciones Continuas</li>
+          <li>App Custom</li>
+       </ul>
+
+      </div>
 
       <button onclick="openModal('Plan App')" class="btn-plan">
         Contactar
@@ -138,24 +130,21 @@
     <div class="plan">
       <div class="plan-header">
         <h3>OBS</h3>
-        <div class="price">5$</div>
+        <div class="price">5$ / $7.500</div>
         <span class="price-sub">Pago único</span>
-      </div>
 
-      <ul class="plan-features">
-        <li>Arquitectura SaaS</li>
-        <li>Autenticación Segura</li>
-        <li>Infraestructura Escalable</li>
-        <li>Integraciones API</li>
-        <li>Soporte Prioritario</li>
-      </ul>
+        <ul class="plan-features">
+          <li>Todo Custom</li>
+        </ul>
+
+      </div>
 
       <button onclick="openModal('Plan Obs')" class="btn-plan">
         Contactar
       </button>
     </div>
 
-    
+
     <div class="plan">
       <div class="plan-header">
         <h3>ARREGLOS BUG</h3>
@@ -188,11 +177,11 @@
       </div>
 
       <ul class="plan-features">
-        <li>Arquitectura SaaS</li>
-        <li>Autenticación Segura</li>
-        <li>Infraestructura Escalable</li>
-        <li>Integraciones API</li>
-        <li>Soporte Prioritario</li>
+        <li>#</li>
+        <li>#</li>
+        <li>#</li>
+        <li>#</li>
+        <li>#</li>
       </ul>
 
       <button onclick="openModal('Plan App')" class="btn-plan">
@@ -212,7 +201,7 @@
   <div class="faq-container">
 
     <div class="faq-item">
-      <div class="faq-question">
+      <div class="faq-content">
         <span>¿Cuánto tarda un proyecto?</span>
         <div class="faq-icon">+</div>
       </div>
@@ -223,7 +212,7 @@
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">
+      <div class="faq-content">
         <span>¿Incluye mantenimiento?</span>
         <div class="faq-icon">+</div>
       </div>
@@ -234,7 +223,7 @@
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">
+      <div class="faq-content">
         <span>¿Trabajan con empresas internacionales?</span>
         <div class="faq-icon">+</div>
       </div>
@@ -244,7 +233,7 @@
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">
+      <div class="faq-content">
         <span>¿Qué tecnologías utilizan?</span>
         <div class="faq-icon">+</div>
       </div>
@@ -316,35 +305,99 @@ function closeModal(){
 
 
 /* =========================
-   NOTIFICACION MODERNA
+   NOTIFICACION ULTRA PREMIUM
 ========================= */
 
-function showNotification(msg, success=true){
+function showNotification(msg, success = true){
 
-    const div = document.createElement("div");
+    // Bloquear scroll del fondo
+    document.body.style.overflow = "hidden";
 
-    div.innerText = msg;
-
-    Object.assign(div.style,{
+    // Overlay oscuro con blur
+    const overlay = document.createElement("div");
+    Object.assign(overlay.style,{
         position:"fixed",
-        bottom:"25px",
-        right:"25px",
-        padding:"15px 22px",
-        borderRadius:"10px",
-        color:"white",
-        fontFamily:"Poppins, sans-serif",
-        boxShadow:"0 10px 30px rgba(0,0,0,0.15)",
+        top:"0",
+        left:"0",
+        width:"100%",
+        height:"100%",
+        background:"rgba(0,0,0,0.75)",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
         zIndex:"9999",
-        background: success 
-            ? "linear-gradient(45deg,#0ea5e9,#2563eb)"
-            : "linear-gradient(45deg,#ef4444,#b91c1c)"
+        backdropFilter:"blur(8px)"
     });
 
-    document.body.appendChild(div);
+    const box = document.createElement("div");
 
-    setTimeout(()=>{
-        div.remove();
-    },3500);
+    box.innerHTML = `
+        <div style="
+            width:70px;
+            height:70px;
+            margin:0 auto 20px auto;
+            border-radius:50%;
+            background:${success ? "linear-gradient(135deg,#0ea5e9,#2563eb)" : "linear-gradient(135deg,#ef4444,#b91c1c)"};
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:32px;
+            box-shadow:0 0 25px ${success ? "#2563eb" : "#ef4444"};
+        ">
+            ${success ? "✓" : "✕"}
+        </div>
+
+        <h2 style="margin-bottom:15px; font-weight:600;">
+            ${success ? "Pago recibido" : "Ocurrió un error"}
+        </h2>
+
+        <p style="font-size:15px; line-height:1.6; opacity:0.85;">
+            ${success 
+            ? "Gracias por tu compra. Para confirmar el pago y brindarte más detalles, nos estaremos comunicando al email que dejaste o al número de teléfono si fue proporcionado."
+            : msg}
+        </p>
+
+        <button id="closeNotice" style="
+            margin-top:30px;
+            padding:12px 28px;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+            background:#111;
+            color:white;
+            font-weight:600;
+            letter-spacing:0.5px;
+            transition:0.3s;
+        ">
+            Cerrar
+        </button>
+    `;
+
+    Object.assign(box.style,{
+        background:"rgba(20,20,20,0.9)",
+        color:"white",
+        padding:"50px",
+        borderRadius:"22px",
+        textAlign:"center",
+        width:"90%",
+        maxWidth:"480px",
+        fontFamily:"Poppins, sans-serif",
+        boxShadow:"0 40px 80px rgba(0,0,0,0.6)",
+        border:"1px solid rgba(255,255,255,0.08)",
+    });
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    const btn = document.getElementById("closeNotice");
+
+    btn.onmouseenter = () => btn.style.background = "#2563eb";
+    btn.onmouseleave = () => btn.style.background = "#111";
+
+    btn.onclick = () => {
+        overlay.remove();
+        document.body.style.overflow = "auto"; // restaurar scroll
+    };
 }
 
 
@@ -431,6 +484,34 @@ contactForm.addEventListener("submit", async function(e){
 });
 
 }
+
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+  item.addEventListener("click", () => {
+
+    // cerrar otros (modo profesional)
+    faqItems.forEach(other => {
+      if (other !== item) {
+        other.classList.remove("active");
+        const answer = other.querySelector(".faq-answer");
+        answer.style.height = 0;
+      }
+    });
+
+    const answer = item.querySelector(".faq-answer");
+
+    if (item.classList.contains("active")) {
+      item.classList.remove("active");
+      answer.style.height = 0;
+    } else {
+      item.classList.add("active");
+      answer.style.height = answer.scrollHeight + "px";
+    }
+
+  });
+});
 
 </script>
 
