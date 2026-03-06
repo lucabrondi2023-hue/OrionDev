@@ -9,7 +9,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
 </head>
+<div id="particles-js"></div>
+
 <body>
+
+<div id="loader">
+  
+  <div class="loader-wrapper">
+
+    <img src="img/logo.png" class="loader-logo" alt="Logo">
+
+    <div class="loader-ring"></div>
+    <div class="loader-ring ring2"></div>
+
+  </div>
+
+</div>
+
 
 <div class="background"></div>
 
@@ -358,6 +374,103 @@ contactForm.addEventListener("submit", async function(e){
 }
 
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 80,
+      density: { enable: true, value_area: 800 }
+    },
+    color: { value: "#1da1f2" },
+    shape: { type: "circle" },
+    opacity: {
+      value: 0.4,
+      random: true
+    },
+    size: {
+      value: 3,
+      random: true
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#1da1f2",
+      opacity: 0.2,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 1.2,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out"
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      }
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 0.6
+        }
+      },
+      push: {
+        particles_nb: 4
+      }
+    }
+  },
+  retina_detect: true
+});
+</script>
+<script>
+
+window.addEventListener("load", ()=>{
+
+const loader = document.getElementById("loader");
+
+loader.style.opacity = "0";
+
+setTimeout(()=>{
+loader.style.visibility = "hidden";
+},600);
+
+});
+
+</script>
+<script>
+
+window.addEventListener("load", ()=>{
+
+const loader = document.getElementById("loader");
+
+/* dura 4 segundos */
+
+setTimeout(()=>{
+
+loader.style.opacity="0";
+
+setTimeout(()=>{
+loader.style.visibility="hidden";
+},1000);
+
+},4000);
+
+});
+
 </script>
 </body>
 </html>
