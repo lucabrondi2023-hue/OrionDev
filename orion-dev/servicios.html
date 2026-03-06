@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/services.css">
 </head>
+<div id="particles-js"></div>
 <body>
 
 <div class="background"></div>
@@ -76,7 +77,6 @@
           <li>Actualizaciones Continuas</li>
           <li>Manejo de Email</li>
           <li>Integraciones API</li>
-          <li>Con posibilidad de descarga ( otro costo )</li>
        </ul>
                
       </div>
@@ -127,6 +127,26 @@
         Contactar
       </button>
     </div>
+
+    <div class="plan">
+      <div class="plan-header">
+        <h3>Web / App / Descargable</h3>
+        <div class="price">15$ / $22.500</div>
+        <span class="price-sub">Pago único</span>
+
+        <ul class="plan-features">
+          <li>Una Aplicacion de radio</li>
+          <li>Sistema propio de audio</li>
+          <li>Con descarga a si queda como app</li>
+          <li>todo custom</li>
+        </ul>
+
+      </div>
+
+      <button onclick="openModal('Plan Web / App / Descargable')" class="btn-plan">
+        Contactar
+      </button>
+    </div>    
 
     <div class="plan">
       <div class="plan-header">
@@ -515,7 +535,66 @@ faqItems.forEach(item => {
 });
 
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 80,
+      density: { enable: true, value_area: 800 }
+    },
+    color: { value: "#1da1f2" },
+    shape: { type: "circle" },
+    opacity: {
+      value: 0.4,
+      random: true
+    },
+    size: {
+      value: 3,
+      random: true
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#1da1f2",
+      opacity: 0.2,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 1.2,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out"
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      }
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 0.6
+        }
+      },
+      push: {
+        particles_nb: 4
+      }
+    }
+  },
+  retina_detect: true
+});
+</script>
 </body>
 </html>
-
