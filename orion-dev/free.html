@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store | Orion Dev</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+/* =========================================
+   VARIABLES Y BASE
+   ========================================= */
+:root {
+  --primary: #0ea5e9;
+  --bg: #05070a;
+  --nav-bg: #0d1117; 
+  --btn-bg: rgba(255, 255, 255, 0.05);
+  --btn-border: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+#particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+header { display: flex; justify-content: center; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+.navbar {
+  display: flex; align-items: center; background: var(--nav-bg);
+  border: 1px solid var(--btn-border); padding: 10px 25px;
+  border-radius: 50px; gap: 15px; backdrop-filter: blur(10px);
+}
+.logo img { height: 30px; margin-right: 10px; }
+.nav-links { display: flex; gap: 10px; }
+.nav-item {
+  color: var(--text); text-decoration: none; background: var(--btn-bg);
+  border: 1px solid var(--btn-border); padding: 8px 25px;
+  border-radius: 20px; font-size: 0.9rem; transition: 0.3s;
+}
+.nav-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+/* =========================================
+   FILTROS Y BUSCADOR
+   ========================================= */
+.controls { max-width: 1100px; margin: 40px auto; padding: 0 8%; display: flex; flex-direction: column; gap: 20px; align-items: center; }
+
+#searchBar {
+  width: 100%; max-width: 500px; padding: 12px 25px;
+  border-radius: 30px; border: 1px solid var(--btn-border);
+  background: var(--nav-bg); color: white; outline: none;
+  transition: 0.3s; font-size: 1rem;
+}
+#searchBar:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(14, 165, 233, 0.2); }
+
+.categories { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.cat-btn {
+  background: var(--btn-bg); border: 1px solid var(--btn-border);
+  color: var(--text-muted); padding: 8px 20px; border-radius: 20px;
+  cursor: pointer; transition: 0.3s; font-size: 0.85rem;
+}
+.cat-btn.active, .cat-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* =========================================
+   STORE GRID (MODIFICADO PARA 3 COLUMNAS)
+   ========================================= */
+.pricing { padding: 20px 8% 60px 8%; text-align: center; }
+.section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+
+.pricing-grid {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas en desktop */
+  gap: 30px; max-width: 1100px; margin: 0 auto;
+}
+
+@media (max-width: 992px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.plan {
+  background: rgba(13, 17, 23, 0.8); border: 1px solid var(--btn-border);
+  border-radius: 24px; padding: 25px; transition: all 0.4s ease;
+  display: flex; flex-direction: column; height: 100%;
+}
+.plan:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1); }
+
+.asset-img {
+  width: 100%; height: 160px; border-radius: 15px;
+  overflow: hidden; margin-bottom: 20px; border: 1px solid var(--btn-border);
+  position: relative; cursor: pointer;
+}
+.asset-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.asset-img::after {
+  content: '🔍 Ver Galería'; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(14, 165, 233, 0.4); display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: 0.3s; font-weight: 600;
+}
+.asset-img:hover::after { opacity: 1; }
+
+.plan h3 { font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; min-height: 50px; display: flex; align-items: center; justify-content: center; }
+.plan-features { list-style: none; text-align: left; margin-bottom: 25px; flex-grow: 1; }
+.plan-features li { padding: 5px 0; font-size: 0.8rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.02); }
+
+/* BOTÓN DESCARGA */
+.btn-download {
+  position: relative; display: block; width: 100%; padding: 14px;
+  background: var(--btn-bg); border: 1px solid var(--btn-border);
+  color: #fff; border-radius: 15px; font-weight: 600; font-size: 0.85rem;
+  text-decoration: none; cursor: pointer; overflow: hidden; transition: 0.3s;
+}
+.btn-download span { position: relative; z-index: 2; }
+.btn-download::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--primary); transition: none; z-index: 1;
+}
+.btn-download.loading::before { left: 0; transition: left 1.5s linear; }
+.btn-download.success { background: #10b981; border-color: #10b981; }
+
+/* MODAL */
+.modal {
+  display: none; position: fixed; z-index: 1001; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+  justify-content: center; align-items: center; flex-direction: column;
+}
+.modal-content { max-width: 80%; max-height: 70vh; border-radius: 15px; border: 2px solid var(--primary); animation: zoom 0.3s ease; }
+@keyframes zoom { from {transform: scale(0.7); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+.modal-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: white; }
+.modal-nav { margin-top: 20px; display: flex; gap: 20px; }
+.nav-btn { background: var(--btn-bg); border: 1px solid var(--primary); color: white; padding: 10px 25px; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+
+.footer { padding: 40px; text-align: center; opacity: 0.4; font-size: 0.75rem; }
+</style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+  <nav class="navbar">
+    <div class="logo"><img src="img/logo.png" alt="Logo"></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-item">Inicio</a>
+      <a href="servicios.html" class="nav-item">Servicios</a>
+      <a href="free.html" class="nav-item">Free</a>
+    </div>
+  </nav>
+</header>
+
+<div class="controls">
+  <input type="text" id="searchBar" placeholder="Buscar mapeo, script o recurso..." onkeyup="filterContent()">
+  <div class="categories">
+    <button class="cat-btn active" onclick="filterCategory('all', this)">Todos</button>
+    <button class="cat-btn" onclick="filterCategory('mapeo', this)">Mapeos</button>
+    <button class="cat-btn" onclick="filterCategory('mira', this)">Miras / Crosshairs</button>
+    <button class="cat-btn" onclick="filterCategory('mafia', this)">Mafias</button>
+  </div>
+</div>
+
+<section class="pricing">
+  <h2 class="section-title">Contenido Gratis</h2>
+
+  <div class="pricing-grid" id="mainGrid">
+    
+    <div class="plan" data-name="los santos customs car workshop mapeo" data-category="mapeo">
+      <div class="asset-img" onclick="openGallery(['archivos-free/img/lossantoscustom_1.png', 'archivos-free/img/lossantoscustom_2.png', 'archivos-free/img/lossantoscustom_3.png'])">
+        <img src="archivos-free/img/lossantoscustom_previw.png" alt="Preview">
+      </div>
+      <h3>Los Santos Customs (Workshop)</h3>
+      <ul class="plan-features">
+        <li>Optimizado para FiveM</li>
+        <li>Sin caída de FPS</li>
+        <li>Instalación directa</li>
+      </ul>
+      <a href="archivos-free/rfc_los_santos_customs.rar" download class="btn-download" onclick="startDownload(this, event)">
+        <span>Descargar Gratis</span>
+      </a>
+    </div>
+
+    <div class="plan" data-name="plantacion marihuana bunker base secreta mafia" data-category="mapeo">
+      <div class="asset-img" onclick="openGallery(['archivos-free/img/plantacion-marihuana-bunker_1.png', 'archivos-free/img/plantacion-marihuana-bunker_2.png', 'archivos-free/img/plantacion-marihuana-bunker_3.png', 'archivos-free/img/plantacion-marihuana-bunker_4.png'])">
+        <img src="archivos-free/img/plantacion-marihuana-bunker_previw.png" alt="Preview">
+      </div>
+      <h3>Plantación Marihuana / Base Mafia</h3>
+      <ul class="plan-features">
+        <li>Optimizado para FiveM</li>
+        <li>Interior detallado</li>
+        <li>Instalación directa</li>
+      </ul>
+      <a href="archivos-free/plantacion_marihuana_bunker.zip" download class="btn-download" onclick="startDownload(this, event)">
+        <span>Descargar Gratis</span>
+      </a>
+    </div>
+
+    <div class="plan" data-name="crosshair 1 mira" data-category="mira">
+      <div class="asset-img" onclick="openGallery(['archivos-free/img/crosshair_1.png'])">
+        <img src="archivos-free/img/crosshair_1.png" alt="Preview">
+      </div>
+      <h3>Crosshair 1 (Mira)</h3>
+      <ul class="plan-features">
+        <li>Mira personalizada</li>
+        <li>Compatible con FiveM</li>
+      </ul>
+      <a href="archivos-free/crosshair_1.rar" download class="btn-download" onclick="startDownload(this, event)">
+        <span>Descargar Gratis</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div id="galleryModal" class="modal">
+  <span class="modal-close" onclick="closeGallery()">&times;</span>
+  <img id="modalImg" class="modal-content" src="">
+  <div class="modal-nav">
+    <button class="nav-btn" onclick="changeImg(-1)">Anterior</button>
+    <button class="nav-btn" onclick="changeImg(1)">Siguiente</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>ORION DEV • 2026</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+/* PARTICULAS */
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 40, density: { enable: true, value_area: 800 } },
+    color: { value: "#0ea5e9" },
+    opacity: { value: 0.2 },
+    size: { value: 2 },
+    line_linked: { enable: true, distance: 150, color: "#0ea5e9", opacity: 0.1 },
+    move: { enable: true, speed: 1 }
+  }
+});
+
+/* BUSCADOR Y FILTROS */
+function filterContent() {
+  const input = document.getElementById('searchBar').value.toLowerCase();
+  const plans = document.querySelectorAll('.plan');
+  
+  plans.forEach(plan => {
+    const name = plan.getAttribute('data-name');
+    if (name.includes(input)) {
+      plan.style.display = "flex";
+    } else {
+      plan.style.display = "none";
+    }
+  });
+}
+
+function filterCategory(cat, btn) {
+  // Update Buttons
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const plans = document.querySelectorAll('.plan');
+  plans.forEach(plan => {
+    const category = plan.getAttribute('data-category');
+    if (cat === 'all' || category === cat) {
+      plan.style.display = "flex";
+    } else {
+      plan.style.display = "none";
+    }
+  });
+}
+
+/* GALERIA MODAL */
+let currentImages = [];
+let currentIndex = 0;
+function openGallery(images) {
+  currentImages = images; currentIndex = 0;
+  document.getElementById('modalImg').src = currentImages[currentIndex];
+  document.getElementById('galleryModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeGallery() {
+  document.getElementById('galleryModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+function changeImg(step) {
+  currentIndex += step;
+  if (currentIndex >= currentImages.length) currentIndex = 0;
+  if (currentIndex < 0) currentIndex = currentImages.length - 1;
+  const img = document.getElementById('modalImg');
+  img.style.opacity = 0;
+  setTimeout(() => { img.src = currentImages[currentIndex]; img.style.opacity = 1; }, 150);
+}
+window.onclick = function(e) { if (e.target == document.getElementById('galleryModal')) closeGallery(); }
+
+/* DESCARGA */
+function startDownload(element, event) {
+  event.preventDefault();
+  const url = element.getAttribute('href');
+  if(element.classList.contains('loading') || element.classList.contains('success')) return;
+  element.classList.add('loading');
+  element.querySelector('span').innerText = "Procesando...";
+  setTimeout(() => {
+    element.classList.remove('loading');
+    element.classList.add('success');
+    element.querySelector('span').innerText = "¡Listo! ✓";
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.8 }, colors: ['#0ea5e9', '#ffffff'] });
+    setTimeout(() => { window.location.href = url; }, 800);
+    setTimeout(() => {
+      element.classList.remove('success');
+      element.querySelector('span').innerText = "Descargar Gratis";
+    }, 4000);
+  }, 1500);
+}
+</script>
+</body>
+</html>
