@@ -392,7 +392,350 @@ header{
   opacity:.45;
   font-size:.8rem;
 }
+
+/* PEGÁ ESTO EN TU CSS */
+
+.vip-banner{
+  max-width:1100px;
+  margin:0 auto 35px;
+  padding:0 8%;
+}
+
+.vip-banner-content{
+  background:linear-gradient(135deg, rgba(14,165,233,.15), rgba(255,255,255,.03));
+  border:1px solid rgba(14,165,233,.35);
+  border-radius:24px;
+  padding:35px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 30px rgba(14,165,233,.08);
+}
+
+.vip-tag{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:30px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:.8rem;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+.vip-banner-content h2{
+  font-size:2rem;
+  margin-bottom:10px;
+}
+
+.vip-banner-content p{
+  max-width:700px;
+  margin:auto;
+  color:rgba(255,255,255,.75);
+  line-height:1.6;
+  margin-bottom:22px;
+}
+
+.vip-buttons{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.vip-btn{
+  padding:14px 24px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  font-weight:600;
+  transition:.25s;
+}
+
+.vip-btn:hover{
+  transform:translateY(-3px);
+  border-color:#0ea5e9;
+}
+
+.vip-btn.primary{
+  background:#0ea5e9;
+  border-color:#0ea5e9;
+}
+
+
+/* ===============================
+1) CONTADOR DE CONFIANZA
+PEGAR EN TU CSS
+===============================*/
+.live-info{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:30px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff;
+  font-size:.92rem;
+  margin-bottom:18px;
+  animation:pulseGlow 2s infinite;
+}
+
+.live-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#10b981;
+  box-shadow:0 0 10px #10b981;
+}
+
+@keyframes pulseGlow{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.03);}
+  100%{transform:scale(1);}
+}
+
+
+/* ===============================
+3) ANIMACIÓN AL ENTRAR
+===============================*/
+.plan{
+  animation:fadeUp .7s ease both;
+}
+
+.plan:nth-child(2){animation-delay:.1s;}
+.plan:nth-child(3){animation-delay:.2s;}
+.plan:nth-child(4){animation-delay:.3s;}
+.plan:nth-child(5){animation-delay:.4s;}
+.plan:nth-child(6){animation-delay:.5s;}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(35px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* ===============================
+4) SISTEMA DE ESTRELLAS
+===============================*/
+.stars{
+  color:#facc15;
+  font-size:1rem;
+  letter-spacing:2px;
+  margin-top:10px;
+}
+
+.stars-text{
+  color:rgba(255,255,255,.65);
+  font-size:.85rem;
+  margin-top:4px;
+}
+
+.stats-live{
+  max-width:1200px;
+  margin:70px auto 40px;
+  padding:0 8%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.stat-box{
+  background:rgba(13,17,23,.88);
+  border:1px solid rgba(255,255,255,.08);
+  padding:28px;
+  border-radius:22px;
+  text-align:center;
+  transition:.25s;
+}
+
+.stat-box:hover{
+  transform:translateY(-5px);
+  border-color:#0ea5e9;
+}
+
+.stat-box h3{
+  font-size:2rem;
+  color:#0ea5e9;
+  margin-bottom:8px;
+}
+
+.stat-box p{
+  color:rgba(255,255,255,.65);
+}
+
+@media(max-width:900px){
+.stats-live{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:600px){
+.stats-live{
+grid-template-columns:1fr;
+}
+}
+
+
+.ranking{
+max-width:1200px;
+margin:auto;
+padding:0 8% 60px;
+}
+
+.ranking-box{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.rank-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 22px;
+background:rgba(13,17,23,.88);
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+transition:.25s;
+}
+
+.rank-item:hover{
+border-color:#0ea5e9;
+transform:translateX(6px);
+}
+
+.rank-item span{
+color:#0ea5e9;
+font-weight:700;
+font-size:1.2rem;
+}
+
+.rank-item p{
+flex:1;
+margin-left:20px;
+}
+
+.rank-item strong{
+color:#10b981;
+}
+
 </style>
+
+<!-- =========================================
+PEGÁ ESTE CSS AL FINAL DE TU <style>
+========================================= -->
+<style>
+.testimonials{
+  max-width:1200px;
+  margin:70px auto 0;
+  padding:0 8% 70px;
+}
+
+.testimonials-title{
+  text-align:center;
+  font-size:2.1rem;
+  margin-bottom:12px;
+}
+
+.testimonials-sub{
+  text-align:center;
+  color:rgba(255,255,255,.65);
+  margin-bottom:35px;
+}
+
+.testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+@media(max-width:992px){
+  .testimonials-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .testimonials-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.testimonial-card{
+  background:rgba(13,17,23,.88);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:24px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.testimonial-card:hover{
+  transform:translateY(-6px);
+  border-color:#0ea5e9;
+}
+
+.testimonial-card::before{
+  content:"“";
+  position:absolute;
+  top:-20px;
+  right:18px;
+  font-size:5rem;
+  color:rgba(14,165,233,.08);
+  font-weight:700;
+}
+
+.testimonial-stars{
+  color:#facc15;
+  font-size:1rem;
+  letter-spacing:2px;
+  margin-bottom:14px;
+}
+
+.testimonial-text{
+  color:rgba(255,255,255,.75);
+  line-height:1.6;
+  font-size:.95rem;
+  margin-bottom:18px;
+}
+
+.testimonial-user{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.testimonial-avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#0ea5e9,#2563eb);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#fff;
+}
+
+.testimonial-name{
+  font-weight:600;
+}
+
+.testimonial-role{
+  font-size:.82rem;
+  color:rgba(255,255,255,.55);
+}
+</style>
+
+
 </head>
 
 <body>
@@ -437,8 +780,41 @@ header{
 
 </section>
 
+
 <!-- STORE -->
 <section class="pricing">
+
+<!-- NUEVO BOX VIP -->
+<div class="vip-banner">
+  <div class="vip-banner-content">
+    
+    <div class="live-info">
+      <span class="live-dot"></span>
+      +127 clientes ya compraron acceso VIP
+    </div>
+
+    <span class="vip-tag">ACCESO PREMIUM</span>
+
+    <h2>Contenido Gratis + Zona VIP 🔥</h2>
+    
+    <p>
+      La contraseña del contenido VIP tiene un valor de
+      <strong>$5.000 ARS</strong>.
+      Incluye acceso a bots, recursos exclusivos y archivos privados.
+      Podés solicitarlo desde cualquier sección de la web, solo tenés que
+      especificar que querés el acceso VIP.
+    </p>
+    
+    <div class="stars">★★★★★</div>
+    <div class="stars-text">Valorado por clientes satisfechos</div>    
+
+    <div class="vip-buttons">
+      <a href="index.html" class="vip-btn primary">Solicitar en Inicio</a>
+      <a href="servicios.html" class="vip-btn">Comprar en Servicios</a>
+    </div>
+
+  </div>
+</div>
 
 <h2 class="section-title">Contenido Gratis</h2>
 
@@ -680,11 +1056,123 @@ header{
 </div>
 </div>
 
+
+<section class="stats-live">
+
+  <div class="stat-box">
+    <h3 id="ventasCount">127</h3>
+    <p>Ventas realizadas</p>
+  </div>
+
+  <div class="stat-box">
+    <h3 id="clientesCount">89</h3>
+    <p>Clientes activos</p>
+  </div>
+
+  <div class="stat-box">
+    <h3>98%</h3>
+    <p>Satisfacción</p>
+  </div>
+
+  <div class="stat-box">
+    <h3>24/7</h3>
+    <p>Soporte</p>
+  </div>
+
+</section>
+
+
+<section class="testimonials">
+
+  <h2 class="testimonials-title">Testimonios Reales 💬</h2>
+  <p class="testimonials-sub">
+    Clientes que confiaron en Orion Dev
+  </p>
+
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">
+        Compré acceso VIP y me llegó todo al instante. Muy prolijo y buena atención.
+      </div>
+
+      <div class="testimonial-user">
+        <div class="testimonial-avatar">L</div>
+        <div>
+          <div class="testimonial-name">Lucas M.</div>
+          <div class="testimonial-role">Cliente VIP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">
+        Los mapeos están optimizados de verdad, cero lag y fácil instalación.
+      </div>
+
+      <div class="testimonial-user">
+        <div class="testimonial-avatar">N</div>
+        <div>
+          <div class="testimonial-name">Nico R.</div>
+          <div class="testimonial-role">Servidor FiveM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">
+        Compré bot premium y superó expectativas. Recomendado totalmente.
+      </div>
+
+      <div class="testimonial-user">
+        <div class="testimonial-avatar">T</div>
+        <div>
+          <div class="testimonial-name">Tomi G.</div>
+          <div class="testimonial-role">Cliente Frecuente</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="ranking">
+
+<h2 class="testimonials-title">Top Productos 🔥</h2>
+<p class="testimonials-sub">Lo más comprado esta semana</p>
+
+<div class="ranking-box">
+
+<div class="rank-item">
+<span>#1</span>
+<p>BOT MACHINE</p>
+<strong>42 ventas</strong>
+</div>
+
+<div class="rank-item">
+<span>#2</span>
+<p>Plantación Mafia</p>
+<strong>31 ventas</strong>
+</div>
+
+<div class="rank-item">
+<span>#3</span>
+<p>YAKUZA BOT</p>
+<strong>26 ventas</strong>
+</div>
+
+</div>
+</section>
+
 <footer class="footer">
 ORION DEV • 2026
 </footer>
 
 <script>
+
 /* ==========================================
    CONFIG
 ========================================== */
@@ -886,6 +1374,20 @@ document.addEventListener("keydown",function(e){
   }
 
 });
+
+let ventas = 127;
+let clientes = 89;
+
+setInterval(()=>{
+  ventas++;
+  clientes++;
+
+  document.getElementById("ventasCount").innerText = ventas;
+  document.getElementById("clientesCount").innerText = clientes;
+
+}, 12000);
+
+
 </script>
 
 </body>
