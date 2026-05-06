@@ -404,3 +404,122 @@ border:none;background:#081022;color:white;
   background: #0f172a;
   color: white;
 }
+
+/* ===== FIVEM STYLE ===== */
+
+.plan.fivem {
+    border: 1px solid rgba(255, 80, 0, 0.25);
+    background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(40,10,0,0.9));
+}
+
+.plan.fivem:hover {
+    box-shadow: 0 0 25px rgba(255, 80, 0, 0.3);
+}
+
+/* TAGS */
+.fivem-tags span {
+    background: rgba(255, 80, 0, 0.1);
+    border: 1px solid rgba(255, 80, 0, 0.3);
+    color: #ff5a1f;
+}
+
+/* BOTÓN */
+.btn-fivem {
+    background: linear-gradient(135deg, #ff3c00, #ff7a00);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-fivem:hover {
+    box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+/* ===== SHOP & TIENDA STYLE ===== */
+
+.plan.shop {
+    border: 1px solid rgba(255,255,255,0.15);
+    background: linear-gradient(145deg, rgba(10,10,10,0.95), rgba(25,25,25,0.95));
+}
+
+.plan.shop:hover {
+    box-shadow: 0 0 25px rgba(255,255,255,0.15);
+}
+
+/* TAGS */
+.shop-tags span {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ffffff;
+}
+
+/* BOTÓN */
+.btn-shop {
+    background: linear-gradient(135deg, #000000, #ffffff);
+    color: black;
+    border: none;
+    transition: 0.3s;
+    font-weight: 700;
+}
+
+.btn-shop:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+}
+
+.pricing-banner{
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.banner-box{
+  width: 100%;
+  max-width: 850px;
+  padding: 50px 40px;
+  border-radius: 24px;
+  text-align: center;
+
+  /* glass effect */
+  background: linear-gradient(
+    135deg,
+    rgba(29,161,242,0.15),
+    rgba(37,99,235,0.08),
+    rgba(255, 200, 0, 0.08)
+  );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.35),
+    inset 0 0 20px rgba(255,255,255,0.05);
+
+  color: #eaeaea;
+
+  transition: all 0.3s ease;
+}
+
+.banner-box:hover{
+  transform: translateY(-6px);
+  box-shadow: 
+    0 30px 80px rgba(0,0,0,0.45),
+    inset 0 0 25px rgba(255,255,255,0.08);
+}
+
+.banner-box h2{
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.banner-box p{
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
