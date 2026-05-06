@@ -659,3 +659,336 @@ box-shadow:0 20px 40px rgba(0,0,0,0.5);
 border-color:#1da1f2;
 }
 
+
+/* css de plan extra para que destaque */
+
+.plan.extras {
+  background: linear-gradient(145deg, #0a0f2c, #0d1b3f);
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  box-shadow: 0 0 40px rgba(0, 150, 255, 0.08);
+}
+
+.plan-title {
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.price.variable {
+  color: #00bfff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.plan-desc {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.extras-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.extras-tags span {
+  background: rgba(0, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.extras-tags span:hover {
+  background: rgba(0, 150, 255, 0.2);
+}
+
+.extras-mode {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-bottom: 25px;
+}
+
+.btn-extras {
+  background: linear-gradient(90deg, #00bfff, #007bff);
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-extras:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
+}
+
+/* ------------*/
+
+/* =========================
+   TEAM FINAL iPHONE STYLE
+========================= */
+
+.team {
+  padding: 110px 8%;
+  text-align: center;
+}
+
+.team-header {
+  margin-bottom: 50px;
+}
+
+.team-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.team-header p {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* GRID */
+.team-grid-ios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* CARD */
+.team-card-ios {
+  position: relative;
+  padding: 35px 20px;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  overflow: hidden;
+  transition: 0.4s;
+  text-align: center;
+}
+
+/* BURBUJA */
+.team-card-ios .bubble {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0,162,255,0.35), transparent 70%);
+  top: -40px;
+  right: -40px;
+  filter: blur(30px);
+  opacity: 0.6;
+  transition: 0.5s;
+}
+
+/* HOVER */
+.team-card-ios:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(0,162,255,0.5);
+  box-shadow: 0 20px 40px rgba(0,162,255,0.15);
+}
+
+.team-card-ios:hover .bubble {
+  transform: scale(1.3);
+  opacity: 1;
+}
+
+/* IMG */
+.team-card-ios img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+/* NOMBRE */
+.team-name {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: white;
+  font-weight: 600;
+}
+
+/* ROL */
+.team-role {
+  font-size: 0.8rem;
+  color: #00a2ff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* DESCRIPCIÓN */
+.team-desc {
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+/* LINKS */
+.team-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* BOTONES */
+.team-actions a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  text-decoration: none;
+  font-size: 1rem;
+
+  transition: 0.3s;
+}
+
+/* COLORES REALES */
+.team-actions .fa-instagram {
+  background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.team-actions .fa-discord {
+  color: #5865F2;
+}
+
+/* HOVER */
+.team-actions a:hover {
+  transform: scale(1.1);
+  background: rgba(0,162,255,0.15);
+  border-color: rgba(0,162,255,0.4);
+}
+
+/* TAP iPhone */
+.team-actions a:active {
+  transform: scale(0.92);
+}
+
+
+
+.coming-soon{
+  max-width:1100px;
+  margin:90px auto;
+  padding:0 8%;
+}
+
+.coming-box{
+  background:linear-gradient(135deg, rgba(14,165,233,.12), rgba(255,255,255,.02));
+  border:1px solid rgba(14,165,233,.25);
+  border-radius:26px;
+  padding:45px;
+  text-align:center;
+  backdrop-filter:blur(18px);
+  box-shadow:0 0 50px rgba(14,165,233,.08);
+  position:relative;
+  overflow:hidden;
+}
+
+/* glow animado suave */
+.coming-box::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(14,165,233,.25), transparent 70%);
+  top:-80px;
+  right:-80px;
+  animation:floatGlow 6s infinite linear;
+}
+
+@keyframes floatGlow{
+  0%{transform:translate(0,0);}
+  50%{transform:translate(-20px,20px);}
+  100%{transform:translate(0,0);}
+}
+
+.coming-tag{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:.75rem;
+  font-weight:700;
+  margin-bottom:18px;
+  letter-spacing:.5px;
+}
+
+.coming-box h2{
+  font-size:2.2rem;
+  margin-bottom:10px;
+}
+
+.coming-sub{
+  color:rgba(255,255,255,.7);
+  margin-bottom:30px;
+  max-width:650px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* LISTA */
+.coming-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-bottom:30px;
+}
+
+.coming-list li{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  padding:15px;
+  border-radius:14px;
+  transition:.3s;
+  font-size:.95rem;
+}
+
+.coming-list li:hover{
+  transform:translateX(8px) scale(1.02);
+  border-color:#0ea5e9;
+  box-shadow:0 10px 25px rgba(14,165,233,.08);
+}
+
+/* BADGE DINAMICO PRO */
+.coming-dynamic{
+  display:flex;
+  justify-content:center;
+}
+
+#comingText{
+  padding:11px 22px;
+  border-radius:30px;
+  background:rgba(14,165,233,.08);
+  border:1px solid rgba(14,165,233,.35);
+  color:#0ea5e9;
+  font-size:.85rem;
+  letter-spacing:.4px;
+  backdrop-filter:blur(10px);
+
+  transition:all .4s ease;
+}
+
+/* hover glow */
+#comingText:hover{
+  box-shadow:0 0 18px rgba(14,165,233,.5);
+  transform:translateY(-2px);
+}
