@@ -287,19 +287,23 @@ header{
   border-color:var(--success);
 }
 
-/* ==================================================
-   MODAL
-================================================== */
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  z-index:100;
-  background:rgba(0,0,0,.92);
+  z-index:999;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
   justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  padding:20px;
+  align-items:flex-end;
+}
+
+/* GALERIA (no romper lo tuyo) */
+.modal-content{
+  max-width:85%;
+  max-height:75vh;
+  border-radius:15px;
+  border:2px solid var(--primary);
 }
 
 .modal-close{
@@ -308,13 +312,6 @@ header{
   right:25px;
   font-size:38px;
   cursor:pointer;
-}
-
-.modal-content{
-  max-width:85%;
-  max-height:75vh;
-  border-radius:15px;
-  border:2px solid var(--primary);
 }
 
 .modal-nav{
@@ -331,6 +328,32 @@ header{
   background:var(--soft);
   color:#fff;
   border:1px solid var(--primary);
+}
+
+/* VIP ESTILO iOS */
+.vip-box{
+  width:100%;
+  max-width:420px;
+  background:rgba(13,17,23,.85);
+  backdrop-filter:blur(20px);
+  padding:28px;
+  border-radius:20px 20px 0 0;
+
+  transform:translateY(100%);
+  opacity:0;
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal.active .vip-box{
+  transform:translateY(0);
+  opacity:1;
 }
 
 /* ==================================================
@@ -733,6 +756,33 @@ PEGÁ ESTE CSS AL FINAL DE TU <style>
   font-size:.82rem;
   color:rgba(255,255,255,.55);
 }
+
+
+.vip-main-text {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 15px;
+}
+
+.vip-flow {
+  font-size: 14px;
+  background: rgba(0, 150, 255, 0.08);
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.vip-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(0, 150, 255, 0.4);
+}
+
+.vip-btn.secondary:hover {
+  background: rgba(0, 150, 255, 0.1);
+}
+
 </style>
 
 
@@ -755,6 +805,7 @@ PEGÁ ESTE CSS AL FINAL DE TU <style>
       <a href="index.html" class="nav-item">Inicio</a>
       <a href="servicios.html" class="nav-item">Servicios</a>
       <a href="free.html" class="nav-item">Free</a>
+      <a href="shop.html" class="nav-item">Shop & Tienda</a>
     </div>
 
   </nav>
@@ -790,27 +841,29 @@ PEGÁ ESTE CSS AL FINAL DE TU <style>
     
     <div class="live-info">
       <span class="live-dot"></span>
-      +127 clientes ya compraron acceso VIP
+      +127 clientes ya tienen acceso VIP
     </div>
 
     <span class="vip-tag">ACCESO PREMIUM</span>
 
     <h2>Contenido Gratis + Zona VIP 🔥</h2>
     
-    <p>
-      La contraseña del contenido VIP tiene un valor de
-      <strong>$5.000 ARS</strong>.
-      Incluye acceso a bots, recursos exclusivos y archivos privados.
-      Podés solicitarlo desde cualquier sección de la web, solo tenés que
-      especificar que querés el acceso VIP.
+    <p class="vip-main-text">
+      Accedé a contenido exclusivo, bots privados, recursos premium y archivos únicos.
+      La contraseña VIP tiene un valor de <strong>$5.000 ARS</strong>.
     </p>
-    
+
+    <p class="vip-flow">
+      💡 <strong>¿Cómo obtenerlo?</strong><br>
+      Podés contratarlo desde la sección <strong>Servicios</strong> o solicitarlo en <strong>Extras</strong> enviando tu Gmail para recibir el acceso VIP.
+    </p>
+
     <div class="stars">★★★★★</div>
-    <div class="stars-text">Valorado por clientes satisfechos</div>    
+    <div class="stars-text">Clientes satisfechos recomiendan el acceso VIP</div>    
 
     <div class="vip-buttons">
-      <a href="index.html" class="vip-btn primary">Solicitar en Inicio</a>
-      <a href="servicios.html" class="vip-btn">Comprar en Servicios</a>
+      <a href="servicios.html" class="vip-btn primary">Comprar acceso VIP</a>
+      <a href="index.html#extras" class="vip-btn secondary">Solicitar por Extras</a>
     </div>
 
   </div>
@@ -1331,18 +1384,35 @@ function processDownload(button){
    VIP
 ========================================== */
 function openVipModal(){
+  const modal = document.getElementById("vipModal");
 
-  document.getElementById("vipModal")
-  .style.display = "flex";
+  modal.style.display = "flex";
+
+  setTimeout(()=>{
+    modal.classList.add("active");
+  },10);
 
   document.getElementById("vipPassword").value = "";
   document.getElementById("errorVip").innerText = "";
 }
 
 function closeVipModal(){
-  document.getElementById("vipModal")
-  .style.display = "none";
+  const modal = document.getElementById("vipModal");
+
+  modal.classList.remove("active");
+
+  setTimeout(()=>{
+    modal.style.display = "none";
+  },400);
 }
+
+
+window.addEventListener("click", function(e){
+  const modal = document.getElementById("vipModal");
+  if(e.target === modal){
+    closeVipModal();
+  }
+});
 
 function verifyVipPassword(){
 
