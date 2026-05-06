@@ -37,6 +37,7 @@
     <a href="#">Inicio</a>
     <a href="servicios.html">Servicios</a>
     <a href="free.html">Free</a>
+    <a href="shop.html">Shop & Tienda</a>
     <a href="#contacto">Contacto</a>
   </div>
 </nav>
@@ -57,30 +58,77 @@
 </section>
 
 <section class="team">
-  <h2>Nuestro Equipo</h2>
-  <div class="team-grid">
-    
-    <div class="member">
-      <img src="img/luca.jpg" alt="Luca Brondi" class="avatar">
-      <h4>CEO & Founder</h4>
-      <p>Luca Brondi</p>
 
-      <div class="member-social">
-        <a href="https://www.instagram.com/luca_brondi/"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-
-    <div class="member">
-      <img src="img/enrique.jpg" alt="Enrique" class="avatar">
-      <h4>CEO & Founder</h4>
-      <p>Enrique</p>
-
-      <div class="member-social">
-        <a href="https://www.instagram.com/enrii000/"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-    
+  <div class="team-header">
+    <h2>Nuestro Equipo</h2>
+    <p>Personas detrás de Orion Dev</p>
   </div>
+
+  <div class="team-grid-ios">
+
+    <!-- LUCA -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/luca.jpg" alt="Luca">
+
+      <h3 class="team-name">Luca Brondi</h3>
+      <span class="team-role">CEO & Founder & DEV</span>
+
+      <!--<p class="team-desc">
+        Desarrollo y dirección de proyectos digitales enfocados en rendimiento y diseño.
+      </p>-->
+
+      <div class="team-actions">
+        <a href="https://www.instagram.com/luca_brondi/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ENRIQUE -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/enrique.jpg" alt="Enrique">
+
+      <h3 class="team-name">Enrique</h3>
+      <span class="team-role">CEO & Founder & DEV</span>
+
+      <div class="team-actions">
+        <a href="https://www.instagram.com/enrii000/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- CHIMO -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/chimo.png">
+
+      <h3 class="team-name">CHIMO</h3>
+      <span class="team-role">DEV & Desarrollador</span>
+
+      <div class="team-actions">
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>    
+
+  </div>
+
 </section>
 
 
@@ -139,10 +187,10 @@
 
   <div class="contact-cards">
 
-    <a href="mailto:contacto@oriondev.com" class="contact-card">
+    <a href="mailto:oriondev32@gmail.com" class="contact-card">
       <i class="fas fa-envelope"></i>
       <h3>Email</h3>
-      <p>contacto@oriondev.com</p>
+      <p>oriondev32@gmail.com</p>
     </a>
 
     <a href="https://wa.me/5491100000000" class="contact-card">
@@ -156,6 +204,33 @@
       <h3>Instagram</h3>
       <p>@oriondev</p>
     </a>
+
+  </div>
+
+</section>
+
+<section class="coming-soon">
+
+  <div class="coming-box">
+
+    <span class="coming-tag">PRÓXIMAMENTE</span>
+
+    <h2>Lo que se viene 🚀</h2>
+
+    <p class="coming-sub">
+      Estamos desarrollando nuevas herramientas, automatizaciones y contenido exclusivo
+      para llevar Orion Dev al siguiente nivel.
+    </p>
+
+    <ul class="coming-list">
+      <li>Categoria nueva llamada "Shop & Tienda" es para ventas directas con entrega automatica - puede ser que pongamos cosas de hacking etico</li>
+      <li>Mejor Optimizacion de la web</li>
+      <li>Mejor Adaptacion para telefono</li>
+    </ul>
+
+    <div class="coming-dynamic">
+      <span id="comingText">Lanzamiento pronto</span>
+    </div>
 
   </div>
 
@@ -192,6 +267,35 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+const mensajes = [
+  "Disponible en 7 días",
+  "Lanzamiento inminente",
+  "Acceso limitado 🔥",
+  "Nueva actualización en camino"
+];
+
+let i = 0;
+const el = document.getElementById("comingText");
+
+setInterval(()=>{
+
+  // salida elegante
+  el.style.opacity = "0";
+  el.style.transform = "translateY(10px) scale(0.95)";
+
+  setTimeout(()=>{
+    i = (i + 1) % mensajes.length;
+    el.innerText = mensajes[i];
+
+    // entrada elegante
+    el.style.opacity = "1";
+    el.style.transform = "translateY(0) scale(1)";
+  }, 350);
+
+}, 2600);
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
