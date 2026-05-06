@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notas Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0d1117;
+  --bg2:#161b22;
+  --glass: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text:#e6edf3;
+  --sub:#8b949e;
+  --accent:#58a6ff;
+
+  --urgente:#ff4d4f;
+  --medio:#f0b429;
+  --liviano:#2ecc71;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Inter', sans-serif;
+  background:#0d1117;
+  color:var(--text);
+}
+
+/* fondo pro */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(88,166,255,0.08), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,229,255,0.06), transparent 40%);
+  z-index:-1;
+}
+
+.container{
+  max-width:520px;
+  margin:auto;
+  padding:20px 15px 40px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+h1{
+  font-size:20px;
+  font-weight:500;
+  letter-spacing:1px;
+}
+
+textarea{
+  width:100%;
+  border:none;
+  outline:none;
+  resize:none;
+  font-size:14px;
+  padding:12px;
+  border-radius:14px;
+  background:var(--glass);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+select,button{
+  background:var(--glass);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:6px 10px;
+  border-radius:10px;
+}
+
+button{
+  cursor:pointer;
+  transition:.2s;
+}
+
+button:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+/* notas */
+.note{
+  margin-top:12px;
+  padding:14px;
+  border-radius:16px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter: blur(12px);
+  position:relative;
+  font-size:14px;
+
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeSlide .35s ease forwards;
+}
+
+/* borde lateral pro */
+.note::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  border-radius:16px 0 0 16px;
+}
+
+.note:hover{
+  border-color:var(--accent);
+}
+
+.fecha{
+  font-size:10px;
+  color:var(--sub);
+  margin-top:6px;
+}
+
+.actions{
+  position:absolute;
+  right:10px;
+  top:10px;
+  opacity:0;
+  transition:.2s;
+}
+
+.note:hover .actions{
+  opacity:1;
+}
+
+.icon-btn{
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:var(--sub);
+}
+
+.icon-btn:hover{
+  color:var(--accent);
+}
+
+@keyframes fadeSlide{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* mobile */
+@media (max-width:480px){
+  .container{padding:15px}
+  textarea{font-size:13px}
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>NOTAS</h1>
+  </div>
+
+  <textarea id="texto" rows="2" placeholder="Escribir..."></textarea>
+
+  <div class="controls">
+    <select id="filtro" title="Filtrar notas" onchange="render()">
+      <option value="todas">Filtrar: Todas</option>
+      <option value="urgente">Filtrar: Urgente</option>
+      <option value="medio">Filtrar: Normal</option>
+      <option value="liviano">Filtrar: Liviano</option>
+    </select>
+
+    <select id="prioridad" title="Elegir prioridad al crear">
+      <option value="urgente">Nueva: Urgente</option>
+      <option value="medio">Nueva: Normal</option>
+      <option value="liviano">Nueva: Liviano</option>
+    </select>
+
+    <button onclick="guardarNota()">Guardar</button>
+  </div>
+
+  <div id="lista"></div>
+</div>
+
+<script>
+function obtenerNotas(){return JSON.parse(localStorage.getItem('notas'))||[]}
+function guardarStorage(n){localStorage.setItem('notas',JSON.stringify(n))}
+
+let editIndex=null;
+
+function guardarNota(){
+  const texto=document.getElementById('texto').value;
+  const prioridad=document.getElementById('prioridad').value;
+  if(!texto.trim()) return;
+
+  const notas=obtenerNotas();
+  notas.unshift({texto,prioridad,fecha:new Date().toLocaleString()});
+
+  guardarStorage(notas);
+  document.getElementById('texto').value='';
+  render();
+}
+
+function eliminarNota(i){
+  const n=obtenerNotas();
+  n.splice(i,1);
+  guardarStorage(n);
+  render();
+}
+
+function abrirModal(i){
+  const n=obtenerNotas();
+  editIndex=i;
+  document.getElementById('modalInput').value=n[i].texto;
+  document.getElementById('modal').style.display='flex';
+}
+
+function cerrarModal(){
+  document.getElementById('modal').style.display='none';
+}
+
+function guardarEdicion(){
+  const n=obtenerNotas();
+  n[editIndex].texto=document.getElementById('modalInput').value;
+  guardarStorage(n);
+  cerrarModal();
+  render();
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  const filtro=document.getElementById('filtro').value;
+
+  lista.innerHTML='';
+
+  obtenerNotas().forEach((nota,i)=>{
+    if(filtro!=='todas' && nota.prioridad!==filtro) return;
+
+    const div=document.createElement('div');
+    div.className='note';
+
+    const color = nota.prioridad==='urgente' ? 'var(--urgente)' : nota.prioridad==='medio' ? 'var(--medio)' : 'var(--liviano)';
+
+    div.style.borderLeft='3px solid '+color;
+
+    div.innerHTML=`
+      <div class="actions">
+        <button class="icon-btn" onclick="abrirModal(${i})">✎</button>
+        <button class="icon-btn" onclick="eliminarNota(${i})">×</button>
+      </div>
+
+      <div style="font-size:11px;color:${color};margin-bottom:4px;text-transform:uppercase;">
+        ${nota.prioridad}
+      </div>
+
+      <div>${nota.texto}</div>
+      <div class="fecha">${nota.fecha}</div>
+    `;
+
+    lista.appendChild(div);
+  });
+}
+
+render();
+</script>
+
+<!-- MODAL PRO -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div style="background:#161b22;padding:20px;border-radius:16px;width:90%;max-width:400px;border:1px solid var(--border);">
+    <h3 style="margin-top:0;font-weight:500">Editar nota</h3>
+    <input id="modalInput" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--glass);color:var(--text);margin-top:10px" />
+
+    <div style="display:flex;justify-content:flex-end;margin-top:15px;gap:10px">
+      <button onclick="cerrarModal()">Cancelar</button>
+      <button onclick="guardarEdicion()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
