@@ -125,6 +125,82 @@
           <i class="fab fa-discord"></i>
         </a>
       </div>
+    </div>
+    
+    <!-- puesto dispo DEV & Desarrollador -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/#" alt="Puesto Disponible">
+
+      <h3 class="team-name"></h3>
+      <span class="team-role">DEV & Desarrollador</span>
+
+      <div class="team-actions">
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>    
+    
+    <!-- puesto dispo CM & MARKETING -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/#" alt="Puesto Disponible">
+
+      <h3 class="team-name"></h3>
+      <span class="team-role">CM & MARKETING</span>
+
+      <div class="team-actions">
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- puesto dispo VENTAS -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/#" alt="Puesto Disponible">
+
+      <h3 class="team-name"></h3>
+      <span class="team-role">VENTAS</span>
+
+      <div class="team-actions">
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- puesto dispo VENTAS -->
+    <div class="team-card-ios">
+      <div class="bubble"></div>
+
+      <img src="img/#" alt="Puesto Disponible">
+
+      <h3 class="team-name"></h3>
+      <span class="team-role">VENTAS</span>
+
+      <div class="team-actions">
+        <a href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
     </div>    
 
   </div>
@@ -223,9 +299,9 @@
     </p>
 
     <ul class="coming-list">
-      <li>Categoria nueva llamada "Shop & Tienda" es para ventas directas con entrega automatica - puede ser que pongamos cosas de hacking etico</li>
       <li>Mejor Optimizacion de la web</li>
       <li>Mejor Adaptacion para telefono</li>
+      <li>Posibilidad de una renovacion completa de la pagina web ¿V.2?</li>
     </ul>
 
     <div class="coming-dynamic">
@@ -584,6 +660,46 @@ loader.style.visibility="hidden";
 
 });
 
+/* ===============================
+   🔒 CONTROL MANTENIMIENTO
+=============================== */
+const MAINTENANCE_MODE = false; // true = ON / false = OFF
+
+window.onload = () => {
+  const overlay = document.getElementById("maintenanceOverlay");
+  if(!MAINTENANCE_MODE && overlay){
+    overlay.style.display = "none";
+  }
+};
+/* ===============================
+=============================== */
+
 </script>
+
+<!-- ===============================
+     🔒 MANTENIMIENTO (ELIMINABLE)
+================================ -->
+<div id="maintenanceOverlay">
+
+  <div class="m-box">
+
+    <div class="m-badge">🚧 MODO MANTENIMIENTO</div>
+
+    <h1>Estamos trabajando 🚀</h1>
+
+    <p>
+      La tienda está en proceso de actualización.<br>
+      En breve estará disponible.
+    </p>
+
+    <a href="index.html" class="m-btn">Ir al Inicio</a>
+
+  </div>
+
+</div>
+<!-- ===============================
+================================ -->
+
+<script src="seguridad.js"></script>
 </body>
 </html>
