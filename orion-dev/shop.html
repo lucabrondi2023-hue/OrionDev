@@ -162,6 +162,8 @@ header{
 .card[data-cat="discord"]{border-color:#3b82f6;}
 .card[data-cat="discord"]::before{background:#3b82f6;}
 
+.card[data-cat="steam"]{border-color:#ffffff;}
+.card[data-cat="steam"]::before{background:#ffffff;}
 .card:hover{
   transform:translateY(-8px) scale(1.02);
 }
@@ -181,6 +183,7 @@ header{
 [data-cat="hacking"] .badge{background:#ef444433;color:#ff6b6b;}
 [data-cat="fivem"] .badge{background:#f9731633;color:#ff9f5a;}
 [data-cat="discord"] .badge{background:#3b82f633;color:#6ea8ff;}
+[data-cat="steam"] .badge{background:#3b82f633;color:#ffffff;}
 
 .card img{
   width:100%;
@@ -284,6 +287,42 @@ header{
   font-size:.95rem;
 }
 
+.alert-title{
+  font-size:1.05rem;
+  font-weight:700;
+  color:#ffd54a;
+  margin-bottom:8px;
+}
+
+.alert-text{
+  color:#d8d8d8;
+  line-height:1.7;
+}
+
+.alert-text strong{
+  color:#fff;
+}
+
+.alert-warning{
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.06);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  color:#bdbdbd;
+  font-size:.9rem;
+}
+
+.alert-warning span{
+  font-size:18px;
+}
+
 /* ===============================
    🔒 MANTENIMIENTO (ELIMINABLE)
 =============================== */
@@ -379,8 +418,33 @@ header{
 
 <!-- ================= ALERTA COMPRA ================= -->
 <div class="alert">
-  ⚠️ Entrega automática desactivada.<br>
-  Ir a <strong>Servicios → Plan "Shop & Tienda"</strong> y enviar Gmail para recibir el producto.
+
+  <div style="font-size:28px;margin-bottom:10px;">
+    ⚠️
+  </div>
+
+  <div class="alert-title">
+    Entrega automática desactivada
+  </div>
+
+  <div class="alert-text">
+    Ir a <strong>Servicios → Plan "Shop & Tienda"</strong>
+    y enviar Gmail para recibir el producto.
+  </div>
+
+  <div class="alert-warning">
+    <span>🛡️</span>
+
+    <p>
+      Los productos ofrecidos son entregados únicamente con fines educativos,
+      privados o de desarrollo. El comprador es completamente responsable
+      del uso que le dé luego de la entrega. Orion Dev no se hace responsable
+      por actividades indebidas, daños, bloqueos, sanciones, pérdidas de cuentas,
+      mal uso de terceros o cualquier consecuencia derivada del uso incorrecto
+      de los productos adquiridos.
+    </p>
+  </div>
+
 </div>
 
 <div class="search-box">
@@ -392,35 +456,81 @@ header{
 <button class="cat-btn" onclick="filterCat('hacking',this)">Hacking</button>
 <button class="cat-btn" onclick="filterCat('fivem',this)">FiveM</button>
 <button class="cat-btn" onclick="filterCat('discord',this)">Discord</button>
+<button class="cat-btn" onclick="filterCat('steam',this)">Steam</button>
 </div>
 
 <section class="products">
 
-<div class="card" data-cat="discord" data-name="bot machine">
+<div class="card" data-cat="discord" data-name="bot custom">
 <span class="badge">DISCORD</span>
 <img src="archivos-free/img/botimg.jpg">
-<h3>BOT CUSTOM </h3>
+<h3>Bot custom</h3>
 <div class="price">$10.000 ARS</div>
 <button class="btn btn-buy" onclick="goBuy()">Comprar</button>
-<button class="btn btn-details" onclick="openModal('BOT CUSTOM','Bot premium custom','archivos-free/img/botimg.jpg','$10.000 ARS')">Detalles</button>
+<button class="btn btn-details" onclick="openModal('BOT custom','Bot premium custom','archivos-free/img/botimg.jpg','$10.000 ARS')">Detalles</button>
+</div>
+
+<div class="card" data-cat="discord" data-name="Server Discord +650PJ">
+<span class="badge">DISCORD</span>
+<img src="archivos-free/img/server_discord.png">
+<h3>Server Discord +650PJ</h3>
+<div class="price">$15.000 ARS</div>
+<button class="btn btn-buy" onclick="goBuy()">Comprar</button>
+<button class="btn btn-details" onclick="openModal('Server Discord +650PJ','Es un server de discord que cuenta con +650 Usuarios se vende a ese precio porque la cuenta que tenia la propiedad se perdio pero tenemos los suficietes permisos para dar todo el server al comprador','archivos-free/img/server_discord.png','$15.000 ARS')">Detalles</button>
+</div>
+
+<div class="card" data-cat="steam" data-name="cuentas steam">
+<span class="badge">STEAM</span>
+<img src="archivos-free/img/steam.png">
+<h3>300 Cuentas de Steam FA</h3>
+<div class="price">$2.000 ARS</div>
+<button class="btn btn-buy" onclick="goBuy()">Comprar</button>
+<button class="btn btn-details" onclick="openModal('BOT custom','Son 300 cuentas de steam FA (Usuario y Contraseña | Correo y Contraseña) listas para usarlas','archivos-free/img/steam.png','$2.000 ARS')">Detalles</button>
 </div>
 
 <div class="card" data-cat="fivem" data-name="server completo">
 <span class="badge">FIVEM</span>
 <img src="archivos-free/img/fivem_server.png">
-<h3>SERVER COMPLETO DE ROL SERIO</h3>
+<h3>Server de Rol serio</h3>
 <div class="price">$400.000 ARS</div>
 <button class="btn btn-buy" onclick="goBuy()">Comprar</button>
-<button class="btn btn-details" onclick="openModal('BASE DE SERVER COMPLETO CREADO POR NOSOTROS','tiene todo lo que te puedas img ya que se basa en un rol completamente serio','archivos-free/img/server_fivem.png','$400.000 ARS')">Detalles</button>
+<button class="btn btn-details" onclick="openModal('Server de Rol serio creado por nosotros','tiene todo lo que te puedas img ya que se basa en un rol completamente serio','archivos-free/img/fivem_server.png','$400.000 ARS')">Detalles</button>
 </div>
 
-<div class="card" data-cat="hacking" data-name="scanner tool">
+<div class="card" data-cat="hacking" data-name="DDoS">
 <span class="badge">HACKING</span>
 <img src="archivos-free/img/ddos.png">
-<h3>DDOS</h3>
+<h3>DDoS</h3>
 <div class="price">$8.000 ARS</div>
 <button class="btn btn-buy" onclick="goBuy()">Comprar</button>
-<button class="btn btn-details" onclick="openModal('DDOS / Negacion de servicio','Herramienta avanzada','podes tirar cualquier clase de direccione ip','archivos-free/img/ddos.png','$8.000 ARS')">Detalles</button>
+<button class="btn btn-details" onclick="openModal('DDoS / Negacion de servicio','Herramienta avanzada, podes tirar cualquier clase de direccione ip, red de internet, server de lo quieras','archivos-free/img/ddos.png','$8.000 ARS')">Detalles</button>
+</div>
+
+<div class="card" data-cat="hacking" data-name="simulador de login">
+<span class="badge">HACKING</span>
+<img src="archivos-free/img/simulador_login.png">
+<h3>Simulador de Login</h3>
+<div class="price">$10.000 ARS</div>
+<button class="btn btn-buy" onclick="goBuy()">Comprar</button>
+<button class="btn btn-details" onclick="openModal('Simula Cualquier tipo de login','Brinda la direccion IP como el Usuario y la Contraseña que las almacena en un .txt','archivos-free/img/simulador_login.png','$10.000 ARS')">Detalles</button>
+</div>
+
+<div class="card" data-cat="hacking" data-name="CCS login Credit Cards">
+<span class="badge">HACKING</span>
+<img src="archivos-free/img/css.png">
+<h3>CCS Credit Cards Login</h3>
+<div class="price">$20.000 ARS</div>
+<button class="btn btn-buy" onclick="goBuy()">Comprar</button>
+<button class="btn btn-details" onclick="openModal('CCS Credit Cards','Es un login donde podes sacar tarjetas de credito o debito para comprar en cualquier tienda online','archivos-free/img/css.png','$20.000 ARS')">Detalles</button>
+</div>
+
+<div class="card" data-cat="hacking" data-name="grabber">
+<span class="badge">HACKING</span>
+<img src="archivos-free/img/grabber.png">
+<h3>Grabber</h3>
+<div class="price">$18.000 ARS</div>
+<button class="btn btn-buy" onclick="goBuy()">Comprar</button>
+<button class="btn btn-details" onclick="openModal('Grabber capturador de informacion','herramientas o programas diseñados para obtener información, datos o elementos físicos de forma automatizada o facilitada, se maneja todo por discord y podes extraer informacion mas profundas','archivos-free/img/grabber.png','$18.000 ARS')">Detalles</button>
 </div>
 
 </section>
@@ -484,7 +594,7 @@ c.style.display=(cat==="all"||c.dataset.cat===cat)?"block":"none";
 /* ===============================
    🔒 CONTROL MANTENIMIENTO
 =============================== */
-const MAINTENANCE_MODE = true; // true = ON / false = OFF
+const MAINTENANCE_MODE = false; // true = ON / false = OFF
 
 window.onload = () => {
   const overlay = document.getElementById("maintenanceOverlay");
@@ -521,5 +631,6 @@ window.onload = () => {
 <!-- ===============================
 ================================ -->
 
+<script src="seguridad.js"></script>
 </body>
 </html>
