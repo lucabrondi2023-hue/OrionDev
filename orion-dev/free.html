@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Store | Orion Dev</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/free.css">
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Inicio</a>
+                <a href="servicios.html" class="nav-item">Servicios</a>
+                <a href="free.html" class="nav-item active">Free</a>
+                <a href="shop.html" class="nav-item">Shop & Tienda</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="controls">
+        <div class="categories">
+            <button class="cat-btn active" onclick="filterCategory('all',this)">Todos</button>
+            <button class="cat-btn" onclick="filterCategory('mapeo',this)">Mapeos</button>
+            <button class="cat-btn" onclick="filterCategory('mira',this)">Miras</button>
+            <button class="cat-btn" onclick="filterCategory('mafia',this)">Mafias</button>
+            <button class="cat-btn" onclick="filterCategory('vip',this)">VIP</button>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="vip-banner">
+            <div class="vip-banner-content">
+                <div class="live-info">
+                    <span class="live-dot"></span>
+                    +127 clientes ya tienen acceso VIP
+                </div>
+                <span class="vip-tag">ACCESO PREMIUM</span>
+                <h2>Contenido Gratis + Zona VIP 🔥</h2>
+                <p class="vip-main-text">
+                    Accedé a contenido exclusivo, bots privados, recursos premium y archivos únicos.
+                    La contraseña VIP tiene un valor de <strong>$5.000 ARS</strong>.
+                </p>
+                <div class="vip-flow">
+                    💡 <strong>¿Cómo obtenerlo?</strong><br>
+                    Podés contratarlo desde la sección <strong>Servicios</strong> o solicitarlo en <strong>Extras</strong> enviando tu Gmail para recibir el acceso VIP.
+                </div>
+                <div class="stars">★★★★★</div>
+                <div class="stars-text">Clientes satisfechos recomiendan el acceso VIP</div>
+                <div class="vip-buttons">
+                    <a href="servicios.html" class="vip-btn primary">Comprar acceso VIP</a>
+                    <a href="index.html#extras" class="vip-btn secondary">Solicitar por Extras</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Contenido Disponible</h2>
+
+        <div class="pricing-grid" id="resourceGrid">
+            <div class="plan" data-name="los santos customs workshop" data-category="mapeo">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/lossantoscustom_1.png','archivos-free/img/lossantoscustom_2.png','archivos-free/img/lossantoscustom_3.png'])">
+                    <img src="archivos-free/img/lossantoscustom_previw.png" alt="Preview">
+                </div>
+                <h3>Los Santos Customs (Workshop)</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Optimizado para FiveM</li>
+                    <li><i class="fas fa-check"></i> Sin caída de FPS</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/rfc_los_santos_customs.rar" class="btn-download" onclick="startDownload(this,event)">
+                    <span>Descargar Gratis</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="plantacion bunker mafia" data-category="mapeo">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/plantacion-marihuana-bunker_1.png','archivos-free/img/plantacion-marihuana-bunker_2.png','archivos-free/img/plantacion-marihuana-bunker_3.png'])">
+                    <img src="archivos-free/img/plantacion-marihuana-bunker_previw.png" alt="Preview">
+                </div>
+                <h3>Plantación Marihuana / Base Mafia</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Optimizado para FiveM</li>
+                    <li><i class="fas fa-check"></i> Interior detallado</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/plantacion_marihuana_bunker.zip" class="btn-download" onclick="startDownload(this,event)">
+                    <span>Descargar Gratis</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="crosshair mira" data-category="mira">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/crosshair_1.png'])">
+                    <img src="archivos-free/img/crosshair_1.png" alt="Preview">
+                </div>
+                <h3>Crosshair 1 (Mira)</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Mira personalizada</li>
+                    <li><i class="fas fa-check"></i> Compatible con FiveM</li>
+                </ul>
+                <a href="archivos-free/crosshair_1.rar" class="btn-download" onclick="startDownload(this,event)">
+                    <span>Descargar Gratis</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="bot machine" data-category="vip">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/botimg.jpg'])">
+                    <img src="archivos-free/img/botimg.jpg" alt="VIP">
+                    <div class="vip-lock"><i class="fas fa-lock"></i></div>
+                </div>
+                <h3>BOT MACHINE</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-star"></i> Funciones avanzadas</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/bot_machine.txt" class="btn-download vip-btn-style" onclick="startDownload(this,event)">
+                    <span>Descargar VIP</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="bot reseller con gen" data-category="vip">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/botimg.jpg'])">
+                    <img src="archivos-free/img/botimg.jpg" alt="VIP">
+                    <div class="vip-lock"><i class="fas fa-lock"></i></div>
+                </div>
+                <h3>BOT RESELLER CON GEN</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-star"></i> Funciones avanzadas</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/bot_reseller_gen.txt" class="btn-download vip-btn-style" onclick="startDownload(this,event)">
+                    <span>Descargar VIP</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="yakuza bot" data-category="vip">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/botimg.jpg'])">
+                    <img src="archivos-free/img/botimg.jpg" alt="VIP">
+                    <div class="vip-lock"><i class="fas fa-lock"></i></div>
+                </div>
+                <h3>YAKUZA BOT</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-star"></i> Funciones avanzadas</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/yakuza_bot.txt" class="btn-download vip-btn-style" onclick="startDownload(this,event)">
+                    <span>Descargar VIP</span>
+                </a>
+            </div>
+
+            <div class="plan" data-name="raid propio" data-category="vip">
+                <div class="asset-img" onclick="openGallery(['archivos-free/img/botimg.jpg'])">
+                    <img src="archivos-free/img/botimg.jpg" alt="VIP">
+                    <div class="vip-lock"><i class="fas fa-lock"></i></div>
+                </div>
+                <h3>RAID PROPIO</h3>
+                <ul class="plan-features">
+                    <li><i class="fas fa-star"></i> Funciones avanzadas</li>
+                    <li><i class="fas fa-check"></i> Instalación directa</li>
+                </ul>
+                <a href="archivos-free/raid_discord_propio.rar" class="btn-download vip-btn-style" onclick="startDownload(this,event)">
+                    <span>Descargar VIP</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="galleryModal" class="modal gallery-modal">
+        <span class="modal-close" onclick="closeGallery()">&times;</span>
+        <div class="modal-body">
+            <img id="modalImg" class="modal-content">
+            <div class="modal-nav">
+                <button class="nav-btn" onclick="changeImg(-1)"><i class="fas fa-chevron-left"></i> Anterior</button>
+                <button class="nav-btn" onclick="changeImg(1)">Siguiente <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="vipModal" class="modal">
+        <div class="vip-box">
+            <span class="modal-close-simple" onclick="closeVipModal()">&times;</span>
+            <h2>Acceso VIP</h2>
+            <p>Ingresá la contraseña para descargar</p>
+            <input type="password" id="vipPassword" placeholder="Contraseña">
+            <button onclick="verifyVipPassword()">Entrar</button>
+            <div id="errorVip"></div>
+        </div>
+    </div>
+
+    <section class="stats-live">
+        <div class="stat-box">
+            <h3 id="ventasCount">127</h3>
+            <p>Ventas realizadas</p>
+        </div>
+        <div class="stat-box">
+            <h3 id="clientesCount">89</h3>
+            <p>Clientes activos</p>
+        </div>
+        <div class="stat-box">
+            <h3>98%</h3>
+            <p>Satisfacción</p>
+        </div>
+        <div class="stat-box">
+            <h3>24/7</h3>
+            <p>Soporte</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Compré acceso VIP y me llegó todo al instante. Muy prolijo y buena atención.</p>
+                <div class="testimonial-user">
+                    <div class="testimonial-avatar">L</div>
+                    <div>
+                        <div class="testimonial-name">Lucas M.</div>
+                        <div class="testimonial-role">Cliente VIP</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Los mapeos están optimizados de verdad, cero lag y fácil instalación.</p>
+                <div class="testimonial-user">
+                    <div class="testimonial-avatar">N</div>
+                    <div>
+                        <div class="testimonial-name">Nico R.</div>
+                        <div class="testimonial-role">Servidor FiveM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Compré bot premium y superó expectativas. Recomendado totalmente.</p>
+                <div class="testimonial-user">
+                    <div class="testimonial-avatar">T</div>
+                    <div>
+                        <div class="testimonial-name">Tomi G.</div>
+                        <div class="testimonial-role">Cliente Frecuente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ranking">
+        <div class="ranking-box">
+            <div class="rank-item">
+                <span>#1</span>
+                <p>BOT MACHINE</p>
+                <strong>42 ventas</strong>
+            </div>
+            <div class="rank-item">
+                <span>#2</span>
+                <p>Plantación Mafia</p>
+                <strong>31 ventas</strong>
+            </div>
+            <div class="rank-item">
+                <span>#3</span>
+                <p>YAKUZA BOT</p>
+                <strong>26 ventas</strong>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        ORION DEV • 2026
+    </footer>
+
+    <script src="js/free.js"></script>
+    <script src="js/seguridad.js"></script>
+</body>
+</html>
